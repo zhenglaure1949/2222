@@ -1,0 +1,47 @@
+name: GEO input inspection
+
+on:
+  push:
+    branches: [iga-rips-release]
+    paths:
+      - '.github/workflows/geo-input-inspection.yml'
+      - 'scripts/inspect_geo_inputs.py'
+      - 'run-inspection.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore GEO input cache
+        uses: actions/cache@v4
+        with:
+          path: data/external
+          key: iga-rips-geo-inputs-v1
+      - name: Download public GEO inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/external/GSE127136 data/external/GSE220100 data/external/GSE286911
+          download() {
+            local url="$1" out="$2"
+            if [ -s "$out" ]; then echo "Cached: $out"; return; fi
+            curl -L --fail --retry 8 --retry-delay 10 --connect-timeout 30 --continue-at - "$url" -o "$out"
+          }
+          download 'https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE127136&file=GSE127136_project_IgA_nephropathy_counts.csv.gz&format=file' 'data/external/GSE127136/GSE127136_project_IgA_nephropathy_counts.csv.gz'
+          download 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE220nnn/GSE220100/suppl/GSE220100_RAW.tar' 'data/external/GSE220100/GSE220100_RAW.tar'
+          download 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE286nnn/GSE286911/suppl/GSE286911_RAW.tar' 'data/external/GSE286911/GSE286911_RAW.tar'
+          ls -lh data/external/*/*
+      - name: Inspect inputs
+        run: python scripts/inspect_geo_inputs.py
+      - name: Upload inspection artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: geo-input-inspection
+          path: inspection
+          retention-days: 30
