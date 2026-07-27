@@ -1,0 +1,8 @@
+{
+  "title": "IgA renal injury program public transcriptomic reanalysis",
+  "description": "Reproducible formal UCell, patient-level pseudobulk, NanoString normalization-sensitivity, and evidence-boundary analysis of GSE127136, GSE286911, and GSE220100.",
+  "creators": [{"name": "Zheng, Laurel"}],
+  "license": "MIT",
+  "upload_type": "software",
+  "keywords": ["IgA nephropathy", "IgA vasculitis nephritis", "UCell", "pseudobulk", "NanoString"]
+}
