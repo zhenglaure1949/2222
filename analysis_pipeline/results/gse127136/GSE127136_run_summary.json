@@ -1,0 +1,22 @@
+{
+  "input_cells": 3620,
+  "excluded_PBM_cells": 835,
+  "kidney_cells_before_qc": 2785,
+  "kidney_cells_after_qc": 2785,
+  "genes": 24153,
+  "patients": 19,
+  "IgAN_patients": 13,
+  "control_patients": 6,
+  "celltypes": [
+    "Cycling_stress",
+    "Distal_collecting",
+    "Endothelial",
+    "Macrophage_monocyte",
+    "Podocyte",
+    "Proximal_tubular"
+  ],
+  "pseudobulk_strata": 45,
+  "min_cells_pseudobulk": 10,
+  "formal_UCell": true,
+  "seed": 20260727
+}
