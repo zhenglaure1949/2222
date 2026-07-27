@@ -1,0 +1,65 @@
+name: Run IgA RIPS input inspection
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/run-iga-rips-inspection.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Check out analysis branch
+        uses: actions/checkout@v4
+        with:
+          ref: iga-rips-release
+          fetch-depth: 0
+      - name: Restore GEO cache
+        uses: actions/cache@v4
+        with:
+          path: data/external
+          key: iga-rips-geo-inputs-v1
+      - name: Download and inspect public GEO inputs
+        shell: bash
+        run: |
+          mkdir -p inspection data/external/GSE127136 data/external/GSE220100 data/external/GSE286911
+          exec > >(tee inspection/workflow.log) 2>&1
+          set +e
+          download() {
+            local url="$1" out="$2"
+            if [ -s "$out" ]; then echo "Cached: $out"; return 0; fi
+            curl -L --fail --retry 8 --retry-delay 10 --connect-timeout 30 --continue-at - "$url" -o "$out"
+          }
+          download 'https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE127136&file=GSE127136_project_IgA_nephropathy_counts.csv.gz&format=file' 'data/external/GSE127136/GSE127136_project_IgA_nephropathy_counts.csv.gz'
+          rc1=$?
+          download 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE220nnn/GSE220100/suppl/GSE220100_RAW.tar' 'data/external/GSE220100/GSE220100_RAW.tar'
+          rc2=$?
+          download 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE286nnn/GSE286911/suppl/GSE286911_RAW.tar' 'data/external/GSE286911/GSE286911_RAW.tar'
+          rc3=$?
+          rc4=0
+          if [ $rc1 -eq 0 ] && [ $rc2 -eq 0 ] && [ $rc3 -eq 0 ]; then
+            python scripts/inspect_geo_inputs.py || rc4=$?
+          else
+            rc4=99
+          fi
+          printf 'GSE127136_download=%s\nGSE220100_download=%s\nGSE286911_download=%s\ninspection=%s\n' "$rc1" "$rc2" "$rc3" "$rc4" > inspection/workflow_status.txt
+          ls -lh data/external/*/* || true
+          exit 0
+      - name: Commit inspection result to analysis branch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add inspection
+          if git diff --cached --quiet; then
+            echo 'No inspection changes to commit.'
+          else
+            git commit -m 'Record GEO input inspection results'
+            git push origin HEAD:iga-rips-release
+          fi
