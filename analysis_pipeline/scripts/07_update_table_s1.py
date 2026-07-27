@@ -1,41 +1,56 @@
-from __future__ import annotations
 from pathlib import Path
 import argparse, json
 import pandas as pd
-from openpyxl import load_workbook
-from openpyxl.styles import Alignment
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment
+from openpyxl.utils import get_column_letter
 
-p=argparse.ArgumentParser(); p.add_argument('--template',default='supplement/TableS1_v8_RIPS_gene_sources.xlsx'); p.add_argument('--out',default='supplement/TableS1_v9_RIPS_gene_sources_runtime_verified.xlsx'); p.add_argument('--results-root',default='results'); a=p.parse_args(); root=Path(a.results_root)
-cov127=pd.read_csv(root/'gse127136/GSE127136_module_gene_coverage.csv'); cov286=pd.read_csv(root/'gse286911/GSE286911_module_gene_coverage_by_sample.csv'); cov220=pd.read_csv(root/'gse220100/GSE220100_module_gene_coverage.csv')
-def genes_from(df,module,col='detected_genes'):
- vals=df.loc[df.module==module,col].dropna().astype(str); out=set()
+p=argparse.ArgumentParser()
+p.add_argument('--source-dir',default='supplement')
+p.add_argument('--out',default='supplement/TableS1_v9_RIPS_gene_sources_runtime_verified.xlsx')
+p.add_argument('--results-root',default='results')
+a=p.parse_args(); root=Path(a.results_root); src=Path(a.source_dir)
+genes=pd.read_csv(src/'gene_sources.tsv',sep='\t').fillna('')
+refs=pd.read_csv(src/'references.tsv',sep='\t').fillna('')
+rules=pd.read_csv(src/'curation_rules.tsv',sep='\t').fillna('')
+cov127=pd.read_csv(root/'gse127136/GSE127136_module_gene_coverage.csv')
+cov286=pd.read_csv(root/'gse286911/GSE286911_module_gene_coverage_by_sample.csv')
+cov220=pd.read_csv(root/'gse220100/GSE220100_module_gene_coverage.csv')
+
+def module_key(name): return name.replace(' ','_') if name in ['Inflammatory chemotaxis','Endothelial activation','Tubular injury'] else name
+def detected(df,module):
+ vals=df.loc[df.module==module_key(module),'detected_genes'].dropna().astype(str); out=set()
  for v in vals: out.update(x for x in v.split(';') if x)
  return out
-modules=['Fibrosis','Inflammatory_chemotaxis','Complement','Endothelial_activation','Tubular_injury']; sets={}
+modules=['Fibrosis','Inflammatory chemotaxis','Complement','Endothelial activation','Tubular injury']; sets={}
 for m in modules:
- sets[(m,'GSE127136')]=genes_from(cov127,m); sets[(m,'GSE286911')]=genes_from(cov286,m); sets[(m,'GSE220100')]=genes_from(cov220,m)
-wb=load_workbook(a.template); ws=wb['Gene_sources']; header={ws.cell(4,c).value:c for c in range(1,ws.max_column+1)}
-for r in range(5,ws.max_row+1):
- module=ws.cell(r,header['Module']).value; gene=ws.cell(r,header['Gene']).value
- if not module or not gene: continue
- ws.cell(r,header['GSE127136 coverage']).value='Yes' if gene in sets.get((module,'GSE127136'),set()) else 'No'
- ws.cell(r,header['GSE286911 coverage']).value='Yes' if gene in sets.get((module,'GSE286911'),set()) else 'No'
- ws.cell(r,header['GSE220100 current-output coverage']).value='Yes' if gene in sets.get((module,'GSE220100'),set()) else 'No'
-ws.cell(2,1).value='RIPS is a broad downstream renal-injury framework, not an IgA-specific biomarker. Platform coverage in this version was verified against the real GSE127136, GSE286911, and GSE220100 inputs.'
-pc=wb['Platform_coverage']; pc.cell(2,1).value='Coverage counts were recalculated from the runtime-verified Gene_sources sheet after formal UCell and NanoString sensitivity analyses.'
-for r in range(5,pc.max_row+1):
- m=pc.cell(r,1).value
- if not m: continue
- total=sum(1 for rr in range(5,ws.max_row+1) if ws.cell(rr,header['Module']).value==m); pc.cell(r,2).value=total; pc.cell(r,3).value=total; pc.cell(r,4).value=len(sets.get((m,'GSE127136'),set())); pc.cell(r,5).value=len(sets.get((m,'GSE286911'),set())); pc.cell(r,6).value=len(sets.get((m,'GSE220100'),set()))
-wb['Version_notes'].append(['v9','2026-07-27','Runtime-verified platform coverage; formal pyUCell and patient-level pseudobulk execution; NanoString multi-normalization audit.','Post-analysis submission candidate'])
-for sheet in wb.worksheets:
- sheet.freeze_panes='A5' if sheet.title in ['Gene_sources','References','Curation_rules','Platform_coverage','Version_notes'] else None
- for row in sheet.iter_rows():
-  for cell in row: cell.alignment=Alignment(vertical='top',wrap_text=True)
+ sets[(m,'GSE127136')]=detected(cov127,m); sets[(m,'GSE286911')]=detected(cov286,m); sets[(m,'GSE220100')]=detected(cov220,m)
+for i,r in genes.iterrows():
+ m,g=r['Module'],r['Gene']
+ genes.at[i,'GSE127136 coverage']='Yes' if g in sets[(m,'GSE127136')] else 'No'
+ genes.at[i,'GSE286911 coverage']='Yes' if g in sets[(m,'GSE286911')] else 'No'
+ genes.at[i,'GSE220100 current-output coverage']='Yes' if g in sets[(m,'GSE220100')] else 'No'
+wb=Workbook(); ws=wb.active; ws.title='Gene_sources'
+ws.append(['Table S1. Renal injury program score (RIPS): complete gene list, module assignment, rationale, and source traceability'])
+ws.append(['RIPS is a broad downstream renal-injury framework, not an IgA-specific biomarker. Coverage was runtime-verified against the real GSE127136, GSE286911, and GSE220100 inputs.']); ws.append([]); ws.append(genes.columns.tolist())
+for row in genes.itertuples(index=False,name=None): ws.append(list(row))
+ref=wb.create_sheet('References'); ref.append(['Table S1 source bibliography']); ref.append(['PMID, DOI, and URLs are retained for row-wise traceability.']); ref.append([]); ref.append(refs.columns.tolist())
+for row in refs.itertuples(index=False,name=None): ref.append(list(row))
+cr=wb.create_sheet('Curation_rules'); cr.append(['RIPS curation and analysis rules']); cr.append(['Rules were prespecified to prevent post-hoc gene selection and score overinterpretation.']); cr.append([]); cr.append(rules.columns.tolist())
+for row in rules.itertuples(index=False,name=None): cr.append(list(row))
+pc=wb.create_sheet('Platform_coverage'); pc.append(['Module-level runtime-verified gene coverage']); pc.append([]); pc.append([]); pc.append(['Module','Rows in Table S1','Unique genes','GSE127136 detected','GSE286911 detected','GSE220100 detected','Full RIPS eligible?','Restricted RIPS eligible?'])
+for m in modules:
+ sub=genes[genes.Module==m]
+ pc.append([m,len(sub),sub.Gene.nunique(),len(sets[(m,'GSE127136')]),len(sets[(m,'GSE286911')]),len(sets[(m,'GSE220100')]),'Yes for whole-transcriptome datasets','Only inflammatory chemotaxis, complement, and endothelial activation for GSE220100'])
+vn=wb.create_sheet('Version_notes'); vn.append(['Table S1 version history']); vn.append([]); vn.append([]); vn.append(['Version','Date','Change summary','Status']); vn.append(['v9','2026-07-27','Runtime-verified coverage; formal pyUCell; patient-level pseudobulk; NanoString multi-normalization audit.','Post-analysis submission candidate'])
+for sh in wb.worksheets:
+ sh.freeze_panes='A5'; sh.sheet_view.showGridLines=False
+ for cell in sh[4]: cell.font=Font(bold=True,color='FFFFFF'); cell.fill=PatternFill('solid',fgColor='1F4E78'); cell.alignment=Alignment(wrap_text=True,vertical='center')
+ for row in sh.iter_rows():
+  for cell in row: cell.alignment=Alignment(wrap_text=True,vertical='top')
+ for i in range(1,sh.max_column+1):
+  width=min(55,max(12,max((len(str(sh.cell(r,i).value or '')) for r in range(1,sh.max_row+1)),default=12)+2)); sh.column_dimensions[get_column_letter(i)].width=width
 out=Path(a.out); out.parent.mkdir(parents=True,exist_ok=True); wb.save(out)
-rows=[]
-for r in range(5,ws.max_row+1):
- if ws.cell(r,header['Gene']).value: rows.append({k:ws.cell(r,c).value for k,c in header.items()})
-pd.DataFrame(rows).to_csv(out.with_suffix('.tsv'),sep='\t',index=False)
-summary={'output':str(out),'rows':len(rows),'coverage':{f'{m}_{ds}':len(sets[(m,ds)]) for m in modules for ds in ['GSE127136','GSE286911','GSE220100']}}
+genes.to_csv(out.with_suffix('.tsv'),sep='\t',index=False)
+summary={'output':str(out),'rows':len(genes),'references':len(refs),'rules':len(rules),'coverage':{f'{m}_{ds}':len(sets[(m,ds)]) for m in modules for ds in ['GSE127136','GSE286911','GSE220100']}}
 (out.parent/'TableS1_v9_runtime_summary.json').write_text(json.dumps(summary,indent=2),encoding='utf-8'); print(json.dumps(summary,indent=2))
