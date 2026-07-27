@@ -1,0 +1,8 @@
+Proximal_tubular: [LRP2, CUBN, SLC34A1, ALDOB, SLC5A2]
+Endothelial: [PECAM1, EMCN, KDR, VWF, CLDN5]
+Podocyte: [NPHS1, NPHS2, PODXL, SYNPO, WT1]
+Macrophage_monocyte: [LYZ, LST1, CD68, FCER1G, TYROBP]
+Fibroblast_like: [COL1A1, COL1A2, COL3A1, DCN, LUM]
+Mesangial_pericyte: [PDGFRB, RGS5, CSPG4, MCAM, DES]
+Distal_collecting: [UMOD, SLC12A1, AQP2, ATP6V1B1, KRT8]
+Cycling_stress: [MKI67, TOP2A, JUN, FOS, ATF3]
