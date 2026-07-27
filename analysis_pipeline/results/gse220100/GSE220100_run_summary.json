@@ -1,0 +1,25 @@
+{
+  "kidney_IgAN_n": 5,
+  "kidney_IgAVN_n": 7,
+  "normalization_strategies": [
+    "raw_log2",
+    "background_only",
+    "background_positive",
+    "background_positive_housekeeping"
+  ],
+  "restricted_modules": [
+    "Inflammatory_chemotaxis",
+    "Complement",
+    "Endothelial_activation"
+  ],
+  "restricted_RIPS_directions_IgAN_minus_IgAVN": {
+    "raw_log2": -1.2115454311887035,
+    "background_only": -1.2409995801060243,
+    "background_positive": -1.4223096386148246,
+    "background_positive_housekeeping": 1.1988632883933574
+  },
+  "direction_reversal_present": true,
+  "housekeeping_vs_restricted_RIPS_spearman_rho_under_full_normalization": -0.8041958041958043,
+  "housekeeping_vs_restricted_RIPS_spearman_p": 0.001614768986069931,
+  "formal_interpretation": "Normalization-sensitivity audit; no stable disease-difference claim if direction changes across plausible strategies."
+}

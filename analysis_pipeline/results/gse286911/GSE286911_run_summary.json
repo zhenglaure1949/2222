@@ -1,0 +1,21 @@
+{
+  "independent_units": 6,
+  "units_per_group": 3,
+  "unit_type": "pooled sequencing libraries",
+  "formal_UCell": true,
+  "selection_modes": [
+    "all_qc",
+    "top_umi",
+    "random_downsample"
+  ],
+  "random_seeds": [
+    11,
+    23,
+    37,
+    51,
+    73
+  ],
+  "downsample_n": 5000,
+  "minimum_attainable_two_sided_exact_Mann_Whitney_p": 0.1,
+  "qc_total_nuclei": 525552
+}

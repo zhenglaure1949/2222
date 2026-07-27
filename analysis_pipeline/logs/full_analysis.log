@@ -26,13 +26,103 @@
   "seed": 20260727
 }
 === GSE220100 NanoString normalization audit ===
-Traceback (most recent call last):
-  File "/home/runner/work/2222/2222/analysis_pipeline/scripts/04_gse220100_nanostring.py", line 123, in <module>
-    main()
-  File "/home/runner/work/2222/2222/analysis_pipeline/scripts/04_gse220100_nanostring.py", line 50, in main
-    d = parse_rcc(Path(a.rcc_dir) / r["file"])
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/2222/2222/analysis_pipeline/scripts/04_gse220100_nanostring.py", line 21, in parse_rcc
-    start = next(i for i, x in enumerate(lines) if x.startswith("CodeClass\tName\tAccession"))
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-StopIteration
+{
+  "kidney_IgAN_n": 5,
+  "kidney_IgAVN_n": 7,
+  "normalization_strategies": [
+    "raw_log2",
+    "background_only",
+    "background_positive",
+    "background_positive_housekeeping"
+  ],
+  "restricted_modules": [
+    "Inflammatory_chemotaxis",
+    "Complement",
+    "Endothelial_activation"
+  ],
+  "restricted_RIPS_directions_IgAN_minus_IgAVN": {
+    "raw_log2": -1.2115454311887035,
+    "background_only": -1.2409995801060243,
+    "background_positive": -1.4223096386148246,
+    "background_positive_housekeeping": 1.1988632883933574
+  },
+  "direction_reversal_present": true,
+  "housekeeping_vs_restricted_RIPS_spearman_rho_under_full_normalization": -0.8041958041958043,
+  "housekeeping_vs_restricted_RIPS_spearman_p": 0.001614768986069931,
+  "formal_interpretation": "Normalization-sensitivity audit; no stable disease-difference claim if direction changes across plausible strategies."
+}
+=== GSE286911 formal UCell and sampling audit ===
+   selection_mode  seed                  metric                                                   normal_values                                                     low_values  normal_median  low_median  delta_low_minus_normal  mann_whitney_exact_p  cliffs_delta_low_vs_normal  complete_rank_separation  design_minimum_two_sided_exact_p  FDR_within_selection
+           all_qc   NaN              RIPS_UCell                                                     0.0;0.0;0.0    0.01902374066412449;0.02350383996963501;0.02497493103146553       0.000000    0.023504                0.023504                   0.1                    1.000000                      True                               0.1                   0.6
+           all_qc   NaN              Complement                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+           all_qc   NaN  Endothelial_activation                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+           all_qc   NaN                Fibrosis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+           all_qc   NaN Inflammatory_chemotaxis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+           all_qc   NaN          Tubular_injury                                                     0.0;0.0;0.0                    0.0;0.09520226716995239;0.10289198160171509       0.000000    0.095202                0.095202                   0.4                    0.666667                     False                               0.1                   1.0
+random_downsample  11.0              RIPS_UCell                                                     0.0;0.0;0.0   0.01887328550219536;0.024155795574188232;0.02500835619866848       0.000000    0.024156                0.024156                   0.1                    1.000000                      True                               0.1                   0.6
+random_downsample  11.0              Complement                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  11.0  Endothelial_activation                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  11.0                Fibrosis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  11.0 Inflammatory_chemotaxis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  11.0          Tubular_injury                                                     0.0;0.0;0.0                    0.0;0.09570378065109253;0.10272485017776489       0.000000    0.095704                0.095704                   0.4                    0.666667                     False                               0.1                   1.0
+random_downsample  23.0              RIPS_UCell                                                     0.0;0.0;0.0  0.018070882186293602;0.021699856966733932;0.02500835619866848       0.000000    0.021700                0.021700                   0.1                    1.000000                      True                               0.1                   0.6
+random_downsample  23.0              Complement                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  23.0  Endothelial_activation                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  23.0                Fibrosis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  23.0 Inflammatory_chemotaxis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  23.0          Tubular_injury                                                     0.0;0.0;0.0                    0.0;0.09486794471740723;0.10339349508285522       0.000000    0.094868                0.094868                   0.4                    0.666667                     False                               0.1                   1.0
+random_downsample  37.0              RIPS_UCell                                                     0.0;0.0;0.0   0.01904881000518799;0.023788034915924072;0.02499999850988388       0.000000    0.023788                0.023788                   0.1                    1.000000                      True                               0.1                   0.6
+random_downsample  37.0              Complement                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  37.0  Endothelial_activation                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  37.0                Fibrosis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  37.0 Inflammatory_chemotaxis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  37.0          Tubular_injury                                                     0.0;0.0;0.0                    0.0;0.09562021493911743;0.10314273834228516       0.000000    0.095620                0.095620                   0.4                    0.666667                     False                               0.1                   1.0
+random_downsample  51.0              RIPS_UCell                                                     0.0;0.0;0.0   0.018463723361492157;0.02381907030940056;0.02500835619866848       0.000000    0.023819                0.023819                   0.1                    1.000000                      True                               0.1                   0.6
+random_downsample  51.0              Complement                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  51.0  Endothelial_activation                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  51.0                Fibrosis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  51.0 Inflammatory_chemotaxis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  51.0          Tubular_injury                                                     0.0;0.0;0.0                    0.0;0.09486794471740723;0.10297560691833496       0.000000    0.094868                0.094868                   0.4                    0.666667                     False                               0.1                   1.0
+random_downsample  73.0              RIPS_UCell                                                     0.0;0.0;0.0  0.019241059198975563;0.023420263081789017;0.02500835619866848       0.000000    0.023420                0.023420                   0.1                    1.000000                      True                               0.1                   0.6
+random_downsample  73.0              Complement                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  73.0  Endothelial_activation                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  73.0                Fibrosis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  73.0 Inflammatory_chemotaxis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+random_downsample  73.0          Tubular_injury                                                     0.0;0.0;0.0                    0.0;0.09444999694824219;0.10330992937088013       0.000000    0.094450                0.094450                   0.4                    0.666667                     False                               0.1                   1.0
+          top_umi   NaN              RIPS_UCell 0.003811436705291271;0.010648608207702637;0.0069910939782857895 0.012545973062515259;0.016365766525268555;0.019633900374174118       0.006991    0.016366                0.009375                   0.1                    1.000000                      True                               0.1                   0.6
+          top_umi   NaN              Complement                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+          top_umi   NaN  Endothelial_activation                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+          top_umi   NaN                Fibrosis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+          top_umi   NaN Inflammatory_chemotaxis                                                     0.0;0.0;0.0                                                    0.0;0.0;0.0       0.000000    0.000000                0.000000                   1.0                    0.000000                     False                               0.1                   1.0
+          top_umi   NaN          Tubular_injury                                                     0.0;0.0;0.0                                   0.0;0.0;0.056252092123031616       0.000000    0.000000                0.000000                   0.7                    0.333333                     False                               0.1                   1.0
+=== Runtime Table S1 ===
+{
+  "output": "supplement/TableS1_v9_RIPS_gene_sources_runtime_verified.xlsx",
+  "rows": 35,
+  "references": 14,
+  "rules": 12,
+  "coverage": {
+    "Fibrosis_GSE127136": 8,
+    "Fibrosis_GSE286911": 8,
+    "Fibrosis_GSE220100": 1,
+    "Inflammatory chemotaxis_GSE127136": 8,
+    "Inflammatory chemotaxis_GSE286911": 8,
+    "Inflammatory chemotaxis_GSE220100": 7,
+    "Complement_GSE127136": 6,
+    "Complement_GSE286911": 6,
+    "Complement_GSE220100": 5,
+    "Endothelial activation_GSE127136": 5,
+    "Endothelial activation_GSE286911": 5,
+    "Endothelial activation_GSE220100": 4,
+    "Tubular injury_GSE127136": 8,
+    "Tubular injury_GSE286911": 8,
+    "Tubular injury_GSE220100": 2
+  }
+}
+=== Submission figures ===
+=== Validation ===
+{
+  "status": "PASS",
+  "missing": [],
+  "n_manifest_files": 66
+}
