@@ -1,0 +1,100 @@
+name: Create IgA RIPS v1.0.0 release
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  release:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.issue.title, '[CREATE-IGA-RIPS-RELEASE]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Check out validated analysis branch
+        uses: actions/checkout@v4
+        with:
+          ref: iga-rips-release
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Regenerate final figures and validate
+        id: validate
+        continue-on-error: true
+        shell: bash
+        run: |
+          python -m pip install numpy==1.26.4 pandas==2.2.3 matplotlib==3.9.2
+          cd analysis_pipeline
+          python scripts/05_make_figures_v9.py
+          python scripts/06_validate_outputs_v9.py
+
+      - name: Commit regenerated figures and validation manifest
+        if: steps.validate.outcome == 'success'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis_pipeline/figures_v9 analysis_pipeline/submission_figures_v9 analysis_pipeline/metadata/sha256_manifest_v9.json analysis_pipeline/results/validation_report_v9.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Regenerate final submission figures for v1.0.0'
+            git push origin HEAD:iga-rips-release
+          fi
+
+      - name: Build release archive
+        if: steps.validate.outcome == 'success'
+        shell: bash
+        run: |
+          cd analysis_pipeline
+          rm -f iga_rips_v1.0.0_release.zip
+          zip -r iga_rips_v1.0.0_release.zip \
+            README.md VERSION LICENSE CITATION.cff .zenodo.json RELEASE_NOTES_v1.0.0.md \
+            requirements_runtime.txt environment.yml Dockerfile \
+            config metadata scripts environment results supplement figures_v9 submission_figures_v9 \
+            -x '*/__pycache__/*' '*.pyc' '*.h5ad' '*cell_level_UCell_scores.csv.gz' 'logs/*'
+          sha256sum iga_rips_v1.0.0_release.zip > iga_rips_v1.0.0_release.zip.sha256
+
+      - name: Create or update GitHub release
+        id: release
+        if: steps.validate.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload v1.0.0 analysis_pipeline/iga_rips_v1.0.0_release.zip analysis_pipeline/iga_rips_v1.0.0_release.zip.sha256 --clobber --repo "$GITHUB_REPOSITORY"
+          else
+            gh release create v1.0.0 \
+              analysis_pipeline/iga_rips_v1.0.0_release.zip \
+              analysis_pipeline/iga_rips_v1.0.0_release.zip.sha256 \
+              --repo "$GITHUB_REPOSITORY" \
+              --target iga-rips-release \
+              --title 'IgA RIPS formal reanalysis v1.0.0' \
+              --notes-file analysis_pipeline/RELEASE_NOTES_v1.0.0.md
+          fi
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json url,tagName,name,isDraft,isPrerelease,publishedAt > /tmp/release.json
+
+      - name: Report release status
+        if: always() && github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          {
+            echo '### IgA RIPS release workflow finished'
+            echo
+            echo "- Figure regeneration and validation: ${{ steps.validate.outcome }}"
+            echo "- GitHub release step: ${{ steps.release.outcome }}"
+            echo "- Workflow run ID: $GITHUB_RUN_ID"
+            if [ -f /tmp/release.json ]; then echo; echo '```json'; cat /tmp/release.json; echo '```'; fi
+            if [ -f analysis_pipeline/results/validation_report_v9.json ]; then echo; echo '```json'; cat analysis_pipeline/results/validation_report_v9.json; echo '```'; fi
+          } > /tmp/comment.md
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file /tmp/comment.md
