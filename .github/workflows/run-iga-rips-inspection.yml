@@ -1,17 +1,17 @@
 name: Run IgA RIPS input inspection
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/run-iga-rips-inspection.yml'
+  issues:
+    types: [opened]
   workflow_dispatch:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   inspect:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.issue.title, '[RUN-IGA-RIPS-INSPECTION]')
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -48,7 +48,7 @@ jobs:
           else
             rc4=99
           fi
-          printf 'GSE127136_download=%s\nGSE220100_download=%s\nGSE286911_download=%s\ninspection=%s\n' "$rc1" "$rc2" "$rc3" "$rc4" > inspection/workflow_status.txt
+          printf 'GSE127136_download=%s\nGSE220100_download=%s\nGSE286911_download=%s\ninspection=%s\nrun_id=%s\n' "$rc1" "$rc2" "$rc3" "$rc4" "$GITHUB_RUN_ID" > inspection/workflow_status.txt
           ls -lh data/external/*/* || true
           exit 0
       - name: Commit inspection result to analysis branch
@@ -63,3 +63,21 @@ jobs:
             git commit -m 'Record GEO input inspection results'
             git push origin HEAD:iga-rips-release
           fi
+      - name: Report status to trigger issue
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          {
+            echo '### GEO input inspection completed'
+            echo
+            echo '```text'
+            cat inspection/workflow_status.txt
+            echo '```'
+            echo
+            echo "Workflow run ID: $GITHUB_RUN_ID"
+            echo 'Detailed logs and input manifests were committed to the `iga-rips-release` branch under `inspection/`.'
+          } > inspection/issue_comment.md
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file inspection/issue_comment.md
