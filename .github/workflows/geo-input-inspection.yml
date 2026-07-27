@@ -7,6 +7,12 @@ on:
       - '.github/workflows/geo-input-inspection.yml'
       - 'scripts/inspect_geo_inputs.py'
       - 'run-inspection.txt'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/geo-input-inspection.yml'
+      - 'scripts/inspect_geo_inputs.py'
+      - 'run-inspection.txt'
   workflow_dispatch:
 
 permissions:
