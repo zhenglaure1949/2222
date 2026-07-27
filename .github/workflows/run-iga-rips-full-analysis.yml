@@ -1,0 +1,163 @@
+name: Run IgA RIPS full analysis
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  actions: read
+
+jobs:
+  analyze:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.issue.title, '[RUN-IGA-RIPS-FULL]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - name: Check out analysis branch
+        uses: actions/checkout@v4
+        with:
+          ref: iga-rips-release
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: analysis_pipeline/requirements_runtime.txt
+
+      - name: Restore GEO cache
+        uses: actions/cache@v4
+        with:
+          path: data/external
+          key: iga-rips-geo-inputs-v1
+
+      - name: Prepare public inputs
+        id: prepare
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/external/GSE127136 data/external/GSE220100/rcc data/external/GSE286911/10x
+          download() { local u="$1" o="$2"; [ -s "$o" ] || curl -L --fail --retry 8 --retry-delay 10 --continue-at - "$u" -o "$o"; }
+          download 'https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE127136&file=GSE127136_project_IgA_nephropathy_counts.csv.gz&format=file' 'data/external/GSE127136/GSE127136_project_IgA_nephropathy_counts.csv.gz'
+          download 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE220nnn/GSE220100/suppl/GSE220100_RAW.tar' 'data/external/GSE220100/GSE220100_RAW.tar'
+          download 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE286nnn/GSE286911/suppl/GSE286911_RAW.tar' 'data/external/GSE286911/GSE286911_RAW.tar'
+          tar -xf data/external/GSE220100/GSE220100_RAW.tar -C data/external/GSE220100/rcc
+          rm -rf /tmp/gse286 && mkdir -p /tmp/gse286
+          tar -xf data/external/GSE286911/GSE286911_RAW.tar -C /tmp/gse286
+          for sid in Le1 Le2 Le3 Ne1 Ne2 Ne3; do
+            mkdir -p "data/external/GSE286911/10x/$sid"
+            cp /tmp/gse286/*_${sid}_barcodes.tsv.gz "data/external/GSE286911/10x/$sid/barcodes.tsv.gz"
+            cp /tmp/gse286/*_${sid}_features.tsv.gz "data/external/GSE286911/10x/$sid/features.tsv.gz"
+            cp /tmp/gse286/*_${sid}_matrix.mtx.gz "data/external/GSE286911/10x/$sid/matrix.mtx.gz"
+          done
+          gzip -t data/external/GSE127136/GSE127136_project_IgA_nephropathy_counts.csv.gz
+          find data/external/GSE286911/10x -type f | sort
+
+      - name: Install pinned environment
+        id: install
+        continue-on-error: true
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r analysis_pipeline/requirements_runtime.txt
+          python - <<'PY'
+          import json, platform, sys
+          import numpy,pandas,scipy,scanpy,anndata,matplotlib,statsmodels,openpyxl,pyucell
+          versions={m:globals()[m].__version__ for m in ['numpy','pandas','scipy','scanpy','anndata','matplotlib','statsmodels','openpyxl','pyucell']}
+          versions.update({'python':sys.version,'platform':platform.platform()})
+          from pathlib import Path
+          Path('analysis_pipeline/environment').mkdir(exist_ok=True)
+          Path('analysis_pipeline/environment/runtime_versions.json').write_text(json.dumps(versions,indent=2))
+          PY
+          python -m pip freeze > analysis_pipeline/environment/pip_freeze_runtime.txt
+
+      - name: Run formal analyses
+        id: analysis
+        continue-on-error: true
+        shell: bash
+        working-directory: analysis_pipeline
+        run: |
+          set -o pipefail
+          mkdir -p results logs
+          {
+            echo '=== GSE127136 formal UCell and pseudobulk ==='
+            python scripts/02_gse127136_pyucell_pseudobulk.py --counts ../data/external/GSE127136/GSE127136_project_IgA_nephropathy_counts.csv.gz --signatures config/rips_signatures.yml --markers config/celltype_markers.yml --outdir results/gse127136
+            echo '=== GSE220100 NanoString normalization audit ==='
+            python scripts/04_gse220100_nanostring.py --rcc-dir ../data/external/GSE220100/rcc --metadata metadata/GSE220100_samples.csv --signatures config/rips_signatures.yml --outdir results/gse220100
+            echo '=== GSE286911 formal UCell and sampling audit ==='
+            python scripts/03_gse286911_pyucell.py --root ../data/external/GSE286911/10x --signatures config/rips_signatures.yml --outdir results/gse286911
+            echo '=== Runtime Table S1 ==='
+            python scripts/07_update_table_s1.py --source-dir supplement --results-root results --out supplement/TableS1_v9_RIPS_gene_sources_runtime_verified.xlsx
+            echo '=== Submission figures ==='
+            python scripts/05_make_figures_v9.py
+            echo '=== Validation ==='
+            python scripts/06_validate_outputs_v9.py
+          } 2>&1 | tee logs/full_analysis.log
+
+      - name: Build release candidate
+        id: package
+        if: always()
+        continue-on-error: true
+        shell: bash
+        working-directory: analysis_pipeline
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          stages={'prepare':'${{ steps.prepare.outcome }}','install':'${{ steps.install.outcome }}','analysis':'${{ steps.analysis.outcome }}'}
+          Path('results').mkdir(exist_ok=True)
+          Path('results/workflow_stage_status.json').write_text(json.dumps(stages,indent=2))
+          PY
+          zip -r iga_rips_v9_analysis_outputs.zip results figures_v9 submission_figures_v9 supplement config metadata scripts environment logs requirements_runtime.txt -x '*/__pycache__/*'
+
+      - name: Commit outputs to analysis branch
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis_pipeline
+          if git diff --cached --quiet; then echo 'No new analysis outputs.'; else git commit -m 'Run formal UCell, pseudobulk, NanoString audit, Table S1, and figures'; git push origin HEAD:iga-rips-release; fi
+
+      - name: Upload analysis artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: iga-rips-v9-analysis-outputs
+          path: analysis_pipeline/iga_rips_v9_analysis_outputs.zip
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Report status
+        if: always() && github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          {
+            echo '### IgA RIPS full analysis finished'
+            echo
+            echo "- Input preparation: ${{ steps.prepare.outcome }}"
+            echo "- Environment installation: ${{ steps.install.outcome }}"
+            echo "- Formal analyses and validation: ${{ steps.analysis.outcome }}"
+            echo "- Packaging: ${{ steps.package.outcome }}"
+            echo "- Workflow run ID: $GITHUB_RUN_ID"
+            if [ -f analysis_pipeline/results/validation_report_v9.json ]; then echo; echo '```json'; cat analysis_pipeline/results/validation_report_v9.json; echo '```'; fi
+            if [ -f analysis_pipeline/results/gse127136/GSE127136_run_summary.json ]; then echo; echo '<details><summary>GSE127136 summary</summary>'; echo; echo '```json'; cat analysis_pipeline/results/gse127136/GSE127136_run_summary.json; echo '```'; echo '</details>'; fi
+            if [ -f analysis_pipeline/results/gse286911/GSE286911_run_summary.json ]; then echo; echo '<details><summary>GSE286911 summary</summary>'; echo; echo '```json'; cat analysis_pipeline/results/gse286911/GSE286911_run_summary.json; echo '```'; echo '</details>'; fi
+            if [ -f analysis_pipeline/results/gse220100/GSE220100_run_summary.json ]; then echo; echo '<details><summary>GSE220100 summary</summary>'; echo; echo '```json'; cat analysis_pipeline/results/gse220100/GSE220100_run_summary.json; echo '```'; echo '</details>'; fi
+          } > /tmp/issue_comment.md
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file /tmp/issue_comment.md
