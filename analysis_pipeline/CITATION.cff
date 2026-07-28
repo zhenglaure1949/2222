@@ -5,8 +5,8 @@ type: software
 authors:
   - family-names: Zheng
     given-names: Laurel
-version: 1.0.0
-date-released: 2026-07-27
+version: 1.0.1
+date-released: 2026-07-28
 license: MIT
 repository-code: https://github.com/zhenglaure1949/2222/tree/iga-rips-release/analysis_pipeline
 keywords:
