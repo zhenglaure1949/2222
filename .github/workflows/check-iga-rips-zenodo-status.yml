@@ -1,0 +1,31 @@
+name: Check IgA RIPS Zenodo archive status
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  actions: read
+  issues: write
+  contents: read
+
+jobs:
+  check:
+    if: startsWith(github.event.issue.title, '[CHECK-IGA-RIPS-ZENODO]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query archival workflow runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          gh run list --repo "$GITHUB_REPOSITORY" --workflow create-iga-rips-v1.0.1-zenodo.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,event,displayTitle,headSha,url > /tmp/runs.json
+          {
+            echo '### IgA RIPS Zenodo workflow heartbeat'
+            echo
+            echo '```json'
+            cat /tmp/runs.json
+            echo '```'
+          } > /tmp/comment.md
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file /tmp/comment.md
