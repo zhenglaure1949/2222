@@ -1,0 +1,128 @@
+name: Create IgA RIPS v1.0.1 and capture Zenodo DOI
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+env:
+  RELEASE_TAG: v1.0.1
+  RELEASE_TITLE: IgA RIPS formal reanalysis v1.0.1
+
+jobs:
+  archive:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.issue.title, '[CREATE-IGA-RIPS-ZENODO]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out validated analysis branch
+        uses: actions/checkout@v4
+        with:
+          ref: iga-rips-release
+          fetch-depth: 0
+
+      - name: Build validated archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd analysis_pipeline
+          rm -f iga_rips_v1.0.1_release.zip iga_rips_v1.0.1_release.zip.sha256
+          zip -r iga_rips_v1.0.1_release.zip \
+            README.md VERSION LICENSE CITATION.cff .zenodo.json RELEASE_NOTES_v1.0.1.md \
+            requirements_runtime.txt environment.yml Dockerfile \
+            config metadata scripts environment results supplement figures_v9 submission_figures_v9 \
+            -x '*/__pycache__/*' '*.pyc' '*.h5ad' '*cell_level_UCell_scores.csv.gz' 'logs/*'
+          sha256sum iga_rips_v1.0.1_release.zip > iga_rips_v1.0.1_release.zip.sha256
+
+      - name: Create GitHub release
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" \
+              analysis_pipeline/iga_rips_v1.0.1_release.zip \
+              analysis_pipeline/iga_rips_v1.0.1_release.zip.sha256 \
+              --clobber --repo "$GITHUB_REPOSITORY"
+          else
+            gh release create "$RELEASE_TAG" \
+              analysis_pipeline/iga_rips_v1.0.1_release.zip \
+              analysis_pipeline/iga_rips_v1.0.1_release.zip.sha256 \
+              --repo "$GITHUB_REPOSITORY" \
+              --target iga-rips-release \
+              --title "$RELEASE_TITLE" \
+              --notes-file analysis_pipeline/RELEASE_NOTES_v1.0.1.md
+          fi
+          gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json url,tagName,name,isDraft,isPrerelease,publishedAt > /tmp/github_release.json
+
+      - name: Poll Zenodo public API for archived DOI
+        id: zenodo
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -uo pipefail
+          : > /tmp/zenodo_record.json
+          query='title:"IgA renal injury program public transcriptomic reanalysis"'
+          for attempt in $(seq 1 40); do
+            response=$(curl -fsSLG 'https://zenodo.org/api/records/' \
+              --data-urlencode "q=$query" \
+              --data-urlencode 'sort=mostrecent' \
+              --data-urlencode 'size=20' || true)
+            if [ -n "$response" ]; then
+              echo "$response" > /tmp/zenodo_search.json
+              match=$(echo "$response" | jq -c '[.hits.hits[] | select((.metadata.version // "") == "1.0.1" or (.metadata.version // "") == "v1.0.1")][0] // empty' 2>/dev/null || true)
+              if [ -z "$match" ]; then
+                match=$(echo "$response" | jq -c '[.hits.hits[] | select((.metadata.title // "") == "IgA renal injury program public transcriptomic reanalysis")][0] // empty' 2>/dev/null || true)
+              fi
+              if [ -n "$match" ]; then
+                echo "$match" > /tmp/zenodo_record.json
+                doi=$(echo "$match" | jq -r '.doi // .metadata.doi // empty')
+                url=$(echo "$match" | jq -r '.links.html // empty')
+                echo "doi=$doi" >> "$GITHUB_OUTPUT"
+                echo "url=$url" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            fi
+            sleep 15
+          done
+          echo 'Zenodo record not found within polling window.' >&2
+          exit 1
+
+      - name: Report archive status
+        if: always() && github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          {
+            echo '### IgA RIPS v1.0.1 archival workflow finished'
+            echo
+            echo "- GitHub release step: ${{ steps.release.outcome }}"
+            echo "- Zenodo DOI lookup: ${{ steps.zenodo.outcome }}"
+            echo "- Workflow run ID: $GITHUB_RUN_ID"
+            if [ -f /tmp/github_release.json ]; then
+              echo
+              echo '#### GitHub release'
+              echo '```json'
+              cat /tmp/github_release.json
+              echo '```'
+            fi
+            if [ -s /tmp/zenodo_record.json ]; then
+              echo
+              echo '#### Zenodo record'
+              echo '```json'
+              jq '{id,doi,conceptdoi,links:{html:.links.html},metadata:{title:.metadata.title,version:.metadata.version,publication_date:.metadata.publication_date}}' /tmp/zenodo_record.json
+              echo '```'
+            else
+              echo
+              echo 'Zenodo did not expose a matching public record during this run. Confirm the repository switch is enabled in Zenodo GitHub settings; then create or re-sync the release.'
+            fi
+          } > /tmp/archive_comment.md
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file /tmp/archive_comment.md
