@@ -1,0 +1,49 @@
+name: Broad Zenodo archive lookup
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  lookup:
+    if: startsWith(github.event.issue.title, '[CHECK-ZENODO-BROAD]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query Zenodo with broad repository and version terms
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          set -uo pipefail
+          : > /tmp/candidates.jsonl
+          for query in 'zhenglaure1949' '"zhenglaure1949/2222"' 'version:"1.0.2"' 'version:"v1.0.2"' 'IgA RIPS'; do
+            response=$(curl -fsSLG 'https://zenodo.org/api/records/' \
+              --data-urlencode "q=$query" \
+              --data-urlencode 'sort=mostrecent' \
+              --data-urlencode 'size=100' || true)
+            if [ -n "$response" ]; then
+              echo "$response" | jq -c '.hits.hits[]? | {id,doi,conceptdoi,title:.metadata.title,version:.metadata.version,creators:.metadata.creators,publication_date:.metadata.publication_date,related_identifiers:.metadata.related_identifiers,html:.links.html}' >> /tmp/candidates.jsonl || true
+            fi
+          done
+          if [ -s /tmp/candidates.jsonl ]; then
+            sort -u /tmp/candidates.jsonl > /tmp/candidates_unique.jsonl
+          else
+            : > /tmp/candidates_unique.jsonl
+          fi
+          {
+            echo '### Broad Zenodo lookup'
+            echo
+            echo '```json'
+            if [ -s /tmp/candidates_unique.jsonl ]; then
+              head -100 /tmp/candidates_unique.jsonl
+            else
+              echo '{"status":"no public candidates found"}'
+            fi
+            echo '```'
+          } > /tmp/comment.md
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file /tmp/comment.md
