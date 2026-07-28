@@ -1,4 +1,4 @@
-name: Create IgA RIPS v1.0.2 and capture Zenodo DOI
+name: Create IgA RIPS v1.0.3 and capture Zenodo DOI
 
 on:
   issues:
@@ -10,8 +10,8 @@ permissions:
   issues: write
 
 env:
-  RELEASE_TAG: v1.0.2
-  RELEASE_TITLE: IgA RIPS formal reanalysis v1.0.2
+  RELEASE_TAG: v1.0.3
+  RELEASE_TITLE: IgA RIPS formal reanalysis v1.0.3
 
 jobs:
   archive:
@@ -30,13 +30,13 @@ jobs:
         run: |
           set -euo pipefail
           cd analysis_pipeline
-          rm -f iga_rips_v1.0.2_release.zip iga_rips_v1.0.2_release.zip.sha256
-          zip -r iga_rips_v1.0.2_release.zip \
-            README.md VERSION LICENSE CITATION.cff .zenodo.json RELEASE_NOTES_v1.0.2.md \
+          rm -f iga_rips_v1.0.3_release.zip iga_rips_v1.0.3_release.zip.sha256
+          zip -r iga_rips_v1.0.3_release.zip \
+            README.md VERSION LICENSE CITATION.cff .zenodo.json RELEASE_NOTES_v1.0.3.md \
             requirements_runtime.txt environment.yml Dockerfile \
             config metadata scripts environment results supplement figures_v9 submission_figures_v9 \
             -x '*/__pycache__/*' '*.pyc' '*.h5ad' '*cell_level_UCell_scores.csv.gz' 'logs/*'
-          sha256sum iga_rips_v1.0.2_release.zip > iga_rips_v1.0.2_release.zip.sha256
+          sha256sum iga_rips_v1.0.3_release.zip > iga_rips_v1.0.3_release.zip.sha256
 
       - name: Create GitHub release
         id: release
@@ -47,17 +47,17 @@ jobs:
           set -euo pipefail
           if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             gh release upload "$RELEASE_TAG" \
-              analysis_pipeline/iga_rips_v1.0.2_release.zip \
-              analysis_pipeline/iga_rips_v1.0.2_release.zip.sha256 \
+              analysis_pipeline/iga_rips_v1.0.3_release.zip \
+              analysis_pipeline/iga_rips_v1.0.3_release.zip.sha256 \
               --clobber --repo "$GITHUB_REPOSITORY"
           else
             gh release create "$RELEASE_TAG" \
-              analysis_pipeline/iga_rips_v1.0.2_release.zip \
-              analysis_pipeline/iga_rips_v1.0.2_release.zip.sha256 \
+              analysis_pipeline/iga_rips_v1.0.3_release.zip \
+              analysis_pipeline/iga_rips_v1.0.3_release.zip.sha256 \
               --repo "$GITHUB_REPOSITORY" \
               --target iga-rips-release \
               --title "$RELEASE_TITLE" \
-              --notes-file analysis_pipeline/RELEASE_NOTES_v1.0.2.md
+              --notes-file analysis_pipeline/RELEASE_NOTES_v1.0.3.md
           fi
           gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json url,tagName,name,isDraft,isPrerelease,publishedAt > /tmp/github_release.json
 
@@ -68,24 +68,27 @@ jobs:
         run: |
           set -uo pipefail
           : > /tmp/zenodo_record.json
-          query='title:"IgA renal injury program public transcriptomic reanalysis"'
           for attempt in $(seq 1 80); do
-            response=$(curl -fsSLG 'https://zenodo.org/api/records/' \
-              --data-urlencode "q=$query" \
-              --data-urlencode 'sort=mostrecent' \
-              --data-urlencode 'size=50' || true)
-            if [ -n "$response" ]; then
-              echo "$response" > /tmp/zenodo_search.json
-              match=$(echo "$response" | jq -c '[.hits.hits[] | select((.metadata.version // "") == "1.0.2" or (.metadata.version // "") == "v1.0.2")][0] // empty' 2>/dev/null || true)
-              if [ -n "$match" ]; then
-                echo "$match" > /tmp/zenodo_record.json
-                doi=$(echo "$match" | jq -r '.doi // .metadata.doi // empty')
-                url=$(echo "$match" | jq -r '.links.html // empty')
-                echo "doi=$doi" >> "$GITHUB_OUTPUT"
-                echo "url=$url" >> "$GITHUB_OUTPUT"
-                exit 0
+            for query in 'title:"IgA renal injury program public transcriptomic reanalysis"' 'zhenglaure1949' 'version:"1.0.3"' 'version:"v1.0.3"'; do
+              response=$(curl -fsSLG 'https://zenodo.org/api/records/' \
+                --data-urlencode "q=$query" \
+                --data-urlencode 'sort=mostrecent' \
+                --data-urlencode 'size=100' || true)
+              if [ -n "$response" ]; then
+                match=$(echo "$response" | jq -c '[.hits.hits[] | select((.metadata.version // "") == "1.0.3" or (.metadata.version // "") == "v1.0.3")][0] // empty' 2>/dev/null || true)
+                if [ -z "$match" ]; then
+                  match=$(echo "$response" | jq -c '[.hits.hits[] | select((.metadata.title // "") == "IgA renal injury program public transcriptomic reanalysis")][0] // empty' 2>/dev/null || true)
+                fi
+                if [ -n "$match" ]; then
+                  echo "$match" > /tmp/zenodo_record.json
+                  doi=$(echo "$match" | jq -r '.doi // .metadata.doi // empty')
+                  url=$(echo "$match" | jq -r '.links.html // empty')
+                  echo "doi=$doi" >> "$GITHUB_OUTPUT"
+                  echo "url=$url" >> "$GITHUB_OUTPUT"
+                  exit 0
+                fi
               fi
-            fi
+            done
             sleep 15
           done
           echo 'Zenodo record not found within polling window.' >&2
@@ -99,7 +102,7 @@ jobs:
         shell: bash
         run: |
           {
-            echo '### IgA RIPS v1.0.2 archival workflow finished'
+            echo '### IgA RIPS v1.0.3 archival workflow finished'
             echo
             echo "- GitHub release step: ${{ steps.release.outcome }}"
             echo "- Zenodo DOI lookup: ${{ steps.zenodo.outcome }}"
