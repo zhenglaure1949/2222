@@ -1,0 +1,9 @@
+celltype,requested_genes,detected_genes,genes_detected
+Proximal_tubular,5,5,LRP2;CUBN;SLC34A1;ALDOB;SLC5A2
+Endothelial,5,5,PECAM1;EMCN;KDR;VWF;CLDN5
+Podocyte,5,5,NPHS1;NPHS2;PODXL;SYNPO;WT1
+Macrophage_monocyte,5,5,LYZ;LST1;CD68;FCER1G;TYROBP
+Fibroblast_like,5,5,COL1A1;COL1A2;COL3A1;DCN;LUM
+Mesangial_pericyte,5,5,PDGFRB;RGS5;CSPG4;MCAM;DES
+Distal_collecting,5,5,UMOD;SLC12A1;AQP2;ATP6V1B1;KRT8
+Cycling_stress,5,5,MKI67;TOP2A;JUN;FOS;ATF3

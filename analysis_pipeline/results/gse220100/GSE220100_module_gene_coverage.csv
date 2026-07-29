@@ -1,0 +1,6 @@
+module,requested_n,detected_n,coverage_fraction,detected_genes,missing_genes
+Fibrosis,8,1,0.125,FN1,COL1A1;COL3A1;COL4A1;ACTA2;TAGLN;POSTN;THBS1
+Inflammatory_chemotaxis,8,7,0.875,CCL2;CCL5;CXCL1;CXCL2;CXCL10;TNF;IL1B,CXCL8
+Complement,6,5,0.8333333333333334,C3;CFB;CFH;C1QA;C1QB,C1QC
+Endothelial_activation,5,4,0.8,VCAM1;ICAM1;SELE;PECAM1,VWF
+Tubular_injury,8,2,0.25,SPP1;VCAM1,HAVCR1;LCN2;JUN;FOS;ATF3;KLF6

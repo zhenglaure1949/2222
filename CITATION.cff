@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: If you use this reanalysis, please cite the archived release and the underlying GEO datasets.
+title: IgA renal injury program public transcriptomic reanalysis
+type: software
+authors:
+  - family-names: Zheng
+    given-names: Laurel
+version: 1.0.3
+date-released: 2026-07-28
+doi: 10.5281/zenodo.21649272
+url: https://doi.org/10.5281/zenodo.21649272
+license: MIT
+repository-code: https://github.com/zhenglaure1949/2222/tree/iga-rips-release/analysis_pipeline
+keywords:
+  - IgA nephropathy
+  - IgA vasculitis nephritis
+  - UCell
+  - pseudobulk
+  - NanoString

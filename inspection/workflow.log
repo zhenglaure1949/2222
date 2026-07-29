@@ -1,0 +1,20 @@
+Cached: data/external/GSE127136/GSE127136_project_IgA_nephropathy_counts.csv.gz
+Cached: data/external/GSE220100/GSE220100_RAW.tar
+Cached: data/external/GSE286911/GSE286911_RAW.tar
+{
+  "GSE127136": {
+    "bytes": 15703242,
+    "members": null
+  },
+  "GSE220100": {
+    "bytes": 307200,
+    "members": 25
+  },
+  "GSE286911": {
+    "bytes": 1499996160,
+    "members": 18
+  }
+}
+-rw-r--r-- 1 runner runner  15M Jul 27 14:58 data/external/GSE127136/GSE127136_project_IgA_nephropathy_counts.csv.gz
+-rw-r--r-- 1 runner runner 300K Jul 27 14:59 data/external/GSE220100/GSE220100_RAW.tar
+-rw-r--r-- 1 runner runner 1.4G Jul 27 15:11 data/external/GSE286911/GSE286911_RAW.tar

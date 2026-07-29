@@ -1,0 +1,8 @@
+name: iga-rips-v9
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - -r requirements_runtime.txt

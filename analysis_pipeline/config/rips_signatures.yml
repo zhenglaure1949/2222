@@ -1,0 +1,51 @@
+version: 1.0.0
+name: renal_injury_program_score
+abbreviation: RIPS
+scope: broad downstream renal injury; not IgA-specific and not a validated biomarker
+composite_rule: arithmetic mean of available module UCell scores
+missing_gene_policy: skip
+modules:
+  Fibrosis:
+    - COL1A1
+    - COL3A1
+    - COL4A1
+    - FN1
+    - ACTA2
+    - TAGLN
+    - POSTN
+    - THBS1
+  Inflammatory_chemotaxis:
+    - CCL2
+    - CCL5
+    - CXCL1
+    - CXCL2
+    - CXCL8
+    - CXCL10
+    - TNF
+    - IL1B
+  Complement:
+    - C3
+    - CFB
+    - CFH
+    - C1QA
+    - C1QB
+    - C1QC
+  Endothelial_activation:
+    - VCAM1
+    - ICAM1
+    - SELE
+    - VWF
+    - PECAM1
+  Tubular_injury:
+    - HAVCR1
+    - LCN2
+    - SPP1
+    - VCAM1
+    - JUN
+    - FOS
+    - ATF3
+    - KLF6
+notes:
+  - VCAM1 is intentionally represented in both endothelial activation and tubular injury because its interpretation is compartment-dependent.
+  - Dedicated mesangial activation, podocyte injury, and immune-complex response modules are not included; this is an explicit limitation.
+  - Earlier v7 bookkeeping listed nine predefined fibrosis genes while naming eight. Version 1.0.0 resolves the denominator to the eight explicitly prespecified genes.

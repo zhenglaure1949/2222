@@ -1,0 +1,13 @@
+Rule ID	Topic	Implementation	Boundary / caveat
+CR1	Construct scope	RIPS summarizes downstream renal injury programs and is not disease-specific.	Do not interpret as diagnostic, prognostic, treatment-response, or IgA-specific biomarker.
+CR2	Module definition	Five modules are fibrosis, inflammatory chemotaxis, complement, endothelial activation, and tubular injury.	Dedicated mesangial activation, podocyte injury, and immune-complex-response modules are absent and remain a limitation.
+CR3	Selection timing	Gene membership is biologically curated before disease-group comparisons and not selected by observed P values.	Post-hoc addition based on attractive group differences is prohibited.
+CR4	Weighting	Genes receive equal weight within each module; modules receive equal weight in the composite RIPS.	The weighting scheme is transparent but not optimized or externally validated.
+CR5	VCAM1 overlap	VCAM1 is retained in endothelial activation and tubular injury because it can mark endothelial adhesion and injured tubular states.	Module-specific reporting must preserve this biological overlap; avoid counting it twice in a unique-gene total.
+CR6	UCell implementation	Formal alternative scoring uses the official pyUCell package with rank-based Mann–Whitney U scoring.	The previous internal rank score is retained only as historical sensitivity context and is not called UCell.
+CR7	Missing genes	Formal UCell runs use the package-supported skip policy for signature genes absent from the loaded matrix.	Detected-gene counts are reported by dataset and module.
+CR8	Single-cell inference	Cell-level score maps are descriptive; disease inference is performed within annotated cell types using patient-level summaries.	Cells are not treated as independent biological replicates.
+CR9	Pseudobulk	Raw counts are summed per patient × cell type, then normalized and compared at patient level.	Patient–cell-type strata below the prespecified cell-count threshold are not assigned zero expression or zero score.
+CR10	Platform coverage	Whole-transcriptome coverage is rechecked at runtime; targeted NanoString coverage is limited to genes present on the panel.	Scores are interpreted within dataset and are not compared as absolute cross-platform quantities.
+CR11	Multiplicity	Module and gene families are corrected using Benjamini–Hochberg FDR within prespecified testing families.	Nominal P values are not labelled differentially expressed unless the FDR threshold is met.
+CR12	Version correction	The fibrosis module contains eight genes in the v8 source table.	Earlier narrative denominators that stated nine fibrosis genes must not be reused.

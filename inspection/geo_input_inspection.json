@@ -1,0 +1,462 @@
+{
+  "GSE127136": {
+    "file_bytes": 15703242,
+    "header_columns": 3621,
+    "putative_cells": 3620,
+    "first_header_fields": [
+      "",
+      "IgAN_01_001",
+      "IgAN_01_002",
+      "IgAN_01_003",
+      "IgAN_01_004",
+      "IgAN_01_005",
+      "IgAN_01_006",
+      "IgAN_01_007",
+      "IgAN_01_008",
+      "IgAN_01_009",
+      "IgAN_01_010",
+      "IgAN_01_011",
+      "IgAN_01_012",
+      "IgAN_01_013",
+      "IgAN_01_014",
+      "IgAN_01_015",
+      "IgAN_01_016",
+      "IgAN_01_017",
+      "IgAN_01_018",
+      "IgAN_01_019"
+    ],
+    "first_data_fields": [
+      "A1BG",
+      "0",
+      "4",
+      "4",
+      "0",
+      "0",
+      "1",
+      "0",
+      "0",
+      "0"
+    ],
+    "prefix1_counts": [
+      [
+        "IgAN",
+        2022
+      ],
+      [
+        "PBM",
+        835
+      ],
+      [
+        "NM",
+        763
+      ]
+    ],
+    "prefix2_counts": [
+      [
+        "PBM_IgAN",
+        632
+      ],
+      [
+        "IgAN_07",
+        442
+      ],
+      [
+        "IgAN_10",
+        340
+      ],
+      [
+        "NM_02",
+        309
+      ],
+      [
+        "IgAN_09",
+        303
+      ],
+      [
+        "IgAN_15",
+        221
+      ],
+      [
+        "PBM_NM",
+        203
+      ],
+      [
+        "IgAN_16",
+        173
+      ],
+      [
+        "IgAN_01",
+        137
+      ],
+      [
+        "IgAN_17",
+        129
+      ],
+      [
+        "NM_01",
+        120
+      ],
+      [
+        "IgAN_12",
+        97
+      ],
+      [
+        "NM_07",
+        94
+      ],
+      [
+        "NM_08",
+        93
+      ],
+      [
+        "NM_09",
+        80
+      ],
+      [
+        "IgAN_20",
+        72
+      ],
+      [
+        "NM_03",
+        67
+      ],
+      [
+        "IgAN_19",
+        39
+      ],
+      [
+        "IgAN_11",
+        37
+      ],
+      [
+        "IgAN_06",
+        18
+      ],
+      [
+        "IgAN_18",
+        14
+      ]
+    ]
+  },
+  "GSE220100": {
+    "file_bytes": 307200,
+    "member_count": 25,
+    "members": [
+      {
+        "name": "GPL18649_nCounter_Human_Immunology_v2_Panel_Gene_List.xls.gz",
+        "size": 122465
+      },
+      {
+        "name": "GSM6788338_20201006_andeen_1-12_31020873161_01_01.RCC.gz",
+        "size": 6642
+      },
+      {
+        "name": "GSM6788339_20201006_andeen_1-12_31020873161_01_02.RCC.gz",
+        "size": 6567
+      },
+      {
+        "name": "GSM6788340_20201006_andeen_1-12_31020873161_01_03.RCC.gz",
+        "size": 6787
+      },
+      {
+        "name": "GSM6788341_20201006_andeen_1-12_31020873161_01_04.RCC.gz",
+        "size": 6511
+      },
+      {
+        "name": "GSM6788342_20201006_andeen_1-12_31020873161_01_05.RCC.gz",
+        "size": 6785
+      },
+      {
+        "name": "GSM6788343_20201006_andeen_1-12_31020873161_01_06.RCC.gz",
+        "size": 6513
+      },
+      {
+        "name": "GSM6788344_20201006_andeen_1-12_31020873161_01_07.RCC.gz",
+        "size": 6430
+      },
+      {
+        "name": "GSM6788345_20201006_andeen_1-12_31020873161_01_08.RCC.gz",
+        "size": 6608
+      },
+      {
+        "name": "GSM6788346_20201006_andeen_1-12_31020873161_01_09.RCC.gz",
+        "size": 6780
+      },
+      {
+        "name": "GSM6788347_20201006_andeen_1-12_31020873161_01_10.RCC.gz",
+        "size": 6790
+      },
+      {
+        "name": "GSM6788348_20201006_andeen_1-12_31020873161_01_11.RCC.gz",
+        "size": 6546
+      },
+      {
+        "name": "GSM6788349_20201006_andeen_1-12_31020873161_01_12.RCC.gz",
+        "size": 6886
+      },
+      {
+        "name": "GSM6788350_20201006_andeen_13-24_208731620421_01_01.RCC.gz",
+        "size": 6747
+      },
+      {
+        "name": "GSM6788351_20201006_andeen_13-24_208731620421_01_02.RCC.gz",
+        "size": 6689
+      },
+      {
+        "name": "GSM6788352_20201006_andeen_13-24_208731620421_01_03.RCC.gz",
+        "size": 6765
+      },
+      {
+        "name": "GSM6788353_20201006_andeen_13-24_208731620421_01_04.RCC.gz",
+        "size": 6732
+      },
+      {
+        "name": "GSM6788354_20201006_andeen_13-24_208731620421_01_05.RCC.gz",
+        "size": 6717
+      },
+      {
+        "name": "GSM6788355_20201006_andeen_13-24_208731620421_01_06.RCC.gz",
+        "size": 6688
+      },
+      {
+        "name": "GSM6788356_20201006_andeen_13-24_208731620421_01_07.RCC.gz",
+        "size": 6602
+      },
+      {
+        "name": "GSM6788357_20201006_andeen_13-24_208731620421_01_08.RCC.gz",
+        "size": 5832
+      },
+      {
+        "name": "GSM6788358_20201006_andeen_13-24_208731620421_01_09.RCC.gz",
+        "size": 6409
+      },
+      {
+        "name": "GSM6788359_20201006_andeen_13-24_208731620421_01_10.RCC.gz",
+        "size": 6725
+      },
+      {
+        "name": "GSM6788360_20201006_andeen_13-24_208731620421_01_11.RCC.gz",
+        "size": 6577
+      },
+      {
+        "name": "GSM6788361_20201006_andeen_13-24_208731620421_01_12.RCC.gz",
+        "size": 6264
+      }
+    ],
+    "previews": {
+      "GPL18649_nCounter_Human_Immunology_v2_Panel_Gene_List.xls.gz": "��\u0011ࡱ\u001a�\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000>\u0000\u0003\u0000��\t\u0000\u0006\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\n\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0010\u0000\u0000�\u0004\u0000\u0000\u0001\u0000\u0000\u0000����\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000B\u0000\u0000\u0000�\u0000\u0000\u0000D\u0001\u0000\u0000�\u0001\u0000\u0000F\u0002\u0000\u0000�\u0002\u0000\u0000H\u0003\u0000\u0000�\u0003\u0000\u0000J\u0004\u0000\u0000�\u0004\u0000\u0000~\u0005\u0000\u0000���������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������\u0005\u0000\u0000\u0003\u0000\u0000\u0000\u0004\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0006\u0000\u0000\u0000\u0007\u0000\u0000\u0000\b\u0000\u0000\u0000\t\u0000\u0000\u0000\n\u0000\u0000\u0000\n\u0000\u0000\u0000\n\u0000\u0000\u0000\n\u0000\u0000\u0000\u000e\u0000\u0000\u0000\u000f\u0000\u0000\u0000\u0010\u0000\u0000\u0000\u0011\u0000\u0000\u0000\u0012\u0000\u0000\u0000\u0013\u0000\u0000\u0000\u0014\u0000\u0000\u0000\u0015\u0000\u0000\u0000\u0016\u0000\u0000\u0000\u0017\u0000\u0000\u0000\u0018\u0000\u0000\u0000\u0019\u0000\u0000\u0000\u001a\u0000\u0000\u0000\u001b\u0000\u0000\u0000\n\u0000\u0000\u0000\n\u0000\u0000\u0000\n\u0000\u0000\u0000\u001f\u0000\u0000\u0000 \u0000\u0000\u0000!\u0000\u0000\u0000\"\u0000\u0000\u0000#\u0000\u0000\u0000$\u0000\u0000\u0000%\u0000\u0000\u0000&\u0000\u0000\u0000'\u0000\u0000\u0000(\u0000\u0000\u0000)\u0000\u0000\u0000*\u0000\u0000\u0000+\u0000\u0000\u0000,\u0000\u0000\u0000-\u0000\u0000\u0000.\u0000\u0000\u0000/\u0000\u0000\u00000\u0000\u0000\u00001\u0000\u0000\u00002\u0000\u0000\u00003\u0000\u0000\u00004\u0000\u0000\u00005\u0000\u0000\u00006\u0000\u0000\u00007\u0000\u0000\u00008\u0000\u0000\u00009\u0000\u0000\u0000:\u0000\u0000\u0000;\u0000\u0000\u0000<\u0000\u0000\u0000=\u0000\u0000\u0000>\u0000\u0000\u0000?\u0000\u0000\u0000@\u0000\u0000\u0000A\u0000\u0000\u0000C\u0000\u0000\u0000����D\u0000\u0000\u0000E\u0000\u0000\u0000F\u0000\u0000\u0000G\u0000\u0000\u0000H\u0000\u0000\u0000I\u0000\u0000\u0000J\u0000\u0000\u0000K\u0000\u0000\u0000L\u0000\u0000\u0000M\u0000\u0000\u0000N\u0000\u0000\u0000O\u0000\u0000\u0000P\u0000\u0000\u0000Q\u0000\u0000\u0000R\u0000\u0000\u0000S\u0000\u0000\u0000T\u0000\u0000\u0000U\u0000\u0000\u0000V\u0000\u0000\u0000W\u0000\u0000\u0000X\u0000\u0000\u0000Y\u0000\u0000\u0000Z\u0000\u0000\u0000[\u0000\u0000\u0000\\\u0000\u0000\u0000]\u0000\u0000\u0000^\u0000\u0000\u0000_\u0000\u0000\u0000`\u0000\u0000\u0000a\u0000\u0000\u0000b\u0000\u0000\u0000c\u0000\u0000\u0000d\u0000\u0000\u0000e\u0000\u0000\u0000f\u0000\u0000\u0000g\u0000\u0000\u0000h\u0000\u0000\u0000i\u0000\u0000\u0000j\u0000\u0000\u0000k\u0000\u0000\u0000l\u0000\u0000\u0000m\u0000\u0000\u0000n\u0000\u0000\u0000o\u0000\u0000\u0000p\u0000\u0000\u0000q\u0000\u0000\u0000r\u0000\u0000\u0000s\u0000\u0000\u0000t\u0000\u0000\u0000u\u0000\u0000\u0000v\u0000\u0000\u0000w\u0000\u0000\u0000x\u0000\u0000\u0000y\u0000\u0000\u0000z\u0000\u0000\u0000{\u0000\u0000\u0000|\u0000\u0000\u0000}\u0000\u0000\u0000~\u0000\u0000\u0000\u0000\u0000\u0000�\u0000\u0000\u0000R\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0000\u0005\u0000��������\u0002\u0000\u0000\u0000 \b\u0002\u0000\u0000\u0000\u0000\u0000�\u0000\u0000\u0000\u0000\u0000\u0000F\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0010x\\��h�\u0001�\u0004\u0000\u0000�\u0001\u0000\u0000\u0000\u0000\u0000\u0000W\u0000o\u0000r\u0000k\u0000b\u0000o\u0000o\u0000k\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0012\u0000\u0002\u0001\u0004\u0000\u0000\u0000��������\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0000\u0000\u0000x�\t\u0000\u0000\u0000\u0000\u0000\u0005\u0000S\u0000u\u0000m\u0000m\u0000a\u0000r\u0000y\u0000I\u0000n\u0000f\u0000o\u0000r\u0000m\u0000a\u0000t\u0000i\u0000o\u0000n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000(\u0000\u0002\u0001\u0001\u0000\u0000\u0000\u0003\u0000\u0000\u0000����\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0005\u0000D\u0000o\u0000c\u0000u\u0000m\u0000e\u0000n\u0000t\u0000S\u0000u\u0000m\u0000m\u0000a\u0000r\u0000y\u0000I\u0000n\u0000f\u0000o\u0000r\u0000m\u0000a\u0000t\u0000i\u0000o\u0000n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u00008\u0000\u0002\u0001������������\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0004\u0000\u0000\u0010�\u0001\u0000\u0000\u0000\u0000\u0000\t\b\u0010\u0000\u0000\u0006\u0005\u0000i]�\u0007\u0000\u0000\u0003\u0000\u0006\u0006\u0000\u0000�\u0000\u0002\u0000�\u0004�\u0000\u0002\u0000\u0000\u0000�\u0000\u0000\u0000\\\u0000p\u0000\n\u0000\u0000Hyeseung Lee                                                                                                 B\u0000\u0002\u0000�\u0004a\u0001\u0002\u0000\u0000\u0000=\u0001\u0002\u0000\u0001\u0000�\u0001\u000f\u0000\n\u0000\u0000ThisWorkbook�\u0000\u0002\u0000\u0011\u0000\u0019\u0000\u0002\u0000\u0000\u0000\u0012\u0000\u0002\u0000\u0000\u0000\u0013\u0000\u0002\u0000\u0000\u0000�\u0001\u0002\u0000\u0000\u0000�\u0001\u0002\u0000\u0000\u0000=\u0000\u0012\u0000�\u0019\u0018\u0001�d�48\u0000\u0000\u0000\u0000\u0000\u0001\u0000X\u0002@\u0000\u0002\u0000\u0000\u0000�\u0000\u0002\u0000\u0000\u0000\"\u0000\u0002\u0000\u0000\u0000\u000e\u0000\u0002\u0000\u0001\u0000�\u0001\u0002\u0000\u0000\u0000�\u0000\u0002\u0000\u0000\u00001\u0000\n\u0000�\u0000\u0000\u0000\b\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0000\u0000\b\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0000\u0000\b\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0000\u0000\b\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0000\u0000\b\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\u001a\u0000�\u0000\u0000\u0000��\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0005\u0001A\u0000r\u0000i\u0000a\u0000l\u00001\u0000\u001a\u0000�\u0000\u0000\u0000\b\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0005\u0001A\u0000r\u0000i\u0000a\u0000l\u00001\u0000\u001a\u0000�\u0000\u0000\u0000��\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0005\u0001A\u0000r\u0000i\u0000a\u0000l\u00001\u0000\n\u0000�\u0000\u0000\u0000\b\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0000\u0000\t\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0000\u0000\u0014\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0001\u00004\u0000�\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0001\u0000\t\u0000�\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0002\u0000\u0017\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0000\u0000\u0011\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000,\u0001\u0001\u00008\u0000�\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000\u0004\u0001\u0001\u00008\u0000�\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0001\u00008\u0000�\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0000\u0000>\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0000\u00004\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0000\u0000<\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0001\u0000?\u0000�\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000h\u0001\u0001\u00008\u0000�\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000m\u0000b\u0000r\u0000i\u0000a\u00001\u0000\n\u0000�\u0000\u0001\u0000\b\u0000�\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\n\u0000�\u0000\u0000\u0000\n\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000\u001a\u0000�\u0000\u0000\u0000��\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0005\u0001A\u0000r\u0000i\u0000a\u0000l\u00001\u0000\n\u0000�\u0000\u0000\u0000\b\u0000�\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0007\u0001C\u0000a\u0000l\u0000i\u0000b\u0000r\u0000i\u00001\u0000",
+      "GSM6788338_20201006_andeen_1-12_31020873161_01_01.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,1\nFovCount,280\nFovCounted,279\nScannerID,1809C0569\nStagePosition,1\nBindingDensity,0.27\nCartridgeID,andeen 1-12 31020873161\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,21\nEndogenous,HLA-DQB1,NM_002123.3,5\nEndogenous,KIT,NM_000222.2,40\nEndogenous,LAG3,NM_002286.5,10\nEndogenous,SOCS3,NM_003955.3,148\nEndogenous,TCF7,NM_003202.2,38\nEndogenous,IKBKB,NM_001556.1,204\nEndogenous,KLRC2,NM_002260.3,12",
+      "GSM6788339_20201006_andeen_1-12_31020873161_01_02.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,2\nFovCount,280\nFovCounted,279\nScannerID,1809C0569\nStagePosition,1\nBindingDensity,0.20\nCartridgeID,andeen 1-12 31020873161\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,12\nEndogenous,HLA-DQB1,NM_002123.3,155\nEndogenous,KIT,NM_000222.2,48\nEndogenous,LAG3,NM_002286.5,5\nEndogenous,SOCS3,NM_003955.3,48\nEndogenous,TCF7,NM_003202.2,24\nEndogenous,IKBKB,NM_001556.1,116\nEndogenous,KLRC2,NM_002260.3,5",
+      "GSM6788340_20201006_andeen_1-12_31020873161_01_03.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,3\nFovCount,280\nFovCounted,279\nScannerID,1809C0569\nStagePosition,1\nBindingDensity,0.66\nCartridgeID,andeen 1-12 31020873161\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,27\nEndogenous,HLA-DQB1,NM_002123.3,278\nEndogenous,KIT,NM_000222.2,205\nEndogenous,LAG3,NM_002286.5,14\nEndogenous,SOCS3,NM_003955.3,223\nEndogenous,TCF7,NM_003202.2,68\nEndogenous,IKBKB,NM_001556.1,444\nEndogenous,KLRC2,NM_002260.3,26",
+      "GSM6788341_20201006_andeen_1-12_31020873161_01_04.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,4\nFovCount,280\nFovCounted,278\nScannerID,1809C0569\nStagePosition,1\nBindingDensity,0.18\nCartridgeID,andeen 1-12 31020873161\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,10\nEndogenous,HLA-DQB1,NM_002123.3,107\nEndogenous,KIT,NM_000222.2,6\nEndogenous,LAG3,NM_002286.5,5\nEndogenous,SOCS3,NM_003955.3,101\nEndogenous,TCF7,NM_003202.2,14\nEndogenous,IKBKB,NM_001556.1,106\nEndogenous,KLRC2,NM_002260.3,8",
+      "GSM6788342_20201006_andeen_1-12_31020873161_01_05.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,5\nFovCount,280\nFovCounted,280\nScannerID,1809C0569\nStagePosition,1\nBindingDensity,0.53\nCartridgeID,andeen 1-12 31020873161\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,29\nEndogenous,HLA-DQB1,NM_002123.3,2\nEndogenous,KIT,NM_000222.2,184\nEndogenous,LAG3,NM_002286.5,20\nEndogenous,SOCS3,NM_003955.3,193\nEndogenous,TCF7,NM_003202.2,99\nEndogenous,IKBKB,NM_001556.1,546\nEndogenous,KLRC2,NM_002260.3,22",
+      "GSM6788343_20201006_andeen_1-12_31020873161_01_06.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,6\nFovCount,280\nFovCounted,279\nScannerID,1809C0569\nStagePosition,1\nBindingDensity,0.15\nCartridgeID,andeen 1-12 31020873161\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,0\nEndogenous,HLA-DQB1,NM_002123.3,108\nEndogenous,KIT,NM_000222.2,25\nEndogenous,LAG3,NM_002286.5,9\nEndogenous,SOCS3,NM_003955.3,76\nEndogenous,TCF7,NM_003202.2,70\nEndogenous,IKBKB,NM_001556.1,79\nEndogenous,KLRC2,NM_002260.3,9",
+      "GSM6788344_20201006_andeen_1-12_31020873161_01_07.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,7\nFovCount,280\nFovCounted,278\nScannerID,1809C0569\nStagePosition,1\nBindingDensity,0.13\nCartridgeID,andeen 1-12 31020873161\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,4\nEndogenous,HLA-DQB1,NM_002123.3,0\nEndogenous,KIT,NM_000222.2,22\nEndogenous,LAG3,NM_002286.5,4\nEndogenous,SOCS3,NM_003955.3,27\nEndogenous,TCF7,NM_003202.2,25\nEndogenous,IKBKB,NM_001556.1,66\nEndogenous,KLRC2,NM_002260.3,4",
+      "GSM6788345_20201006_andeen_1-12_31020873161_01_08.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,8\nFovCount,280\nFovCounted,280\nScannerID,1809C0569\nStagePosition,1\nBindingDensity,0.20\nCartridgeID,andeen 1-12 31020873161\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,2\nEndogenous,HLA-DQB1,NM_002123.3,275\nEndogenous,KIT,NM_000222.2,34\nEndogenous,LAG3,NM_002286.5,8\nEndogenous,SOCS3,NM_003955.3,107\nEndogenous,TCF7,NM_003202.2,62\nEndogenous,IKBKB,NM_001556.1,128\nEndogenous,KLRC2,NM_002260.3,8",
+      "GSM6788346_20201006_andeen_1-12_31020873161_01_09.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,9\nFovCount,280\nFovCounted,279\nScannerID,1809C0569\nStagePosition,1\nBindingDensity,0.50\nCartridgeID,andeen 1-12 31020873161\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,20\nEndogenous,HLA-DQB1,NM_002123.3,3\nEndogenous,KIT,NM_000222.2,42\nEndogenous,LAG3,NM_002286.5,32\nEndogenous,SOCS3,NM_003955.3,632\nEndogenous,TCF7,NM_003202.2,108\nEndogenous,IKBKB,NM_001556.1,491\nEndogenous,KLRC2,NM_002260.3,22",
+      "GSM6788347_20201006_andeen_1-12_31020873161_01_10.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,10\nFovCount,280\nFovCounted,278\nScannerID,1809C0569\nStagePosition,1\nBindingDensity,0.55\nCartridgeID,andeen 1-12 31020873161\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,23\nEndogenous,HLA-DQB1,NM_002123.3,3\nEndogenous,KIT,NM_000222.2,57\nEndogenous,LAG3,NM_002286.5,23\nEndogenous,SOCS3,NM_003955.3,288\nEndogenous,TCF7,NM_003202.2,87\nEndogenous,IKBKB,NM_001556.1,439\nEndogenous,KLRC2,NM_002260.3,12",
+      "GSM6788348_20201006_andeen_1-12_31020873161_01_11.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,11\nFovCount,280\nFovCounted,279\nScannerID,1809C0569\nStagePosition,1\nBindingDensity,0.18\nCartridgeID,andeen 1-12 31020873161\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,2\nEndogenous,HLA-DQB1,NM_002123.3,0\nEndogenous,KIT,NM_000222.2,8\nEndogenous,LAG3,NM_002286.5,3\nEndogenous,SOCS3,NM_003955.3,212\nEndogenous,TCF7,NM_003202.2,29\nEndogenous,IKBKB,NM_001556.1,96\nEndogenous,KLRC2,NM_002260.3,11",
+      "GSM6788349_20201006_andeen_1-12_31020873161_01_12.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,12\nFovCount,280\nFovCounted,280\nScannerID,1809C0569\nStagePosition,1\nBindingDensity,0.83\nCartridgeID,andeen 1-12 31020873161\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,38\nEndogenous,HLA-DQB1,NM_002123.3,1464\nEndogenous,KIT,NM_000222.2,135\nEndogenous,LAG3,NM_002286.5,38\nEndogenous,SOCS3,NM_003955.3,843\nEndogenous,TCF7,NM_003202.2,232\nEndogenous,IKBKB,NM_001556.1,586\nEndogenous,KLRC2,NM_002260.3,63",
+      "GSM6788350_20201006_andeen_13-24_208731620421_01_01.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,1\nFovCount,280\nFovCounted,280\nScannerID,1809C0569\nStagePosition,2\nBindingDensity,0.67\nCartridgeID,andeen 13-24 208731620421\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,52\nEndogenous,HLA-DQB1,NM_002123.3,99\nEndogenous,KIT,NM_000222.2,177\nEndogenous,LAG3,NM_002286.5,24\nEndogenous,SOCS3,NM_003955.3,58\nEndogenous,TCF7,NM_003202.2,46\nEndogenous,IKBKB,NM_001556.1,537\nEndogenous,KLRC2,NM_002260.3,33",
+      "GSM6788351_20201006_andeen_13-24_208731620421_01_02.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,2\nFovCount,280\nFovCounted,280\nScannerID,1809C0569\nStagePosition,2\nBindingDensity,0.44\nCartridgeID,andeen 13-24 208731620421\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,16\nEndogenous,HLA-DQB1,NM_002123.3,103\nEndogenous,KIT,NM_000222.2,67\nEndogenous,LAG3,NM_002286.5,8\nEndogenous,SOCS3,NM_003955.3,401\nEndogenous,TCF7,NM_003202.2,37\nEndogenous,IKBKB,NM_001556.1,229\nEndogenous,KLRC2,NM_002260.3,18",
+      "GSM6788352_20201006_andeen_13-24_208731620421_01_03.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,3\nFovCount,280\nFovCounted,280\nScannerID,1809C0569\nStagePosition,2\nBindingDensity,0.69\nCartridgeID,andeen 13-24 208731620421\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,26\nEndogenous,HLA-DQB1,NM_002123.3,473\nEndogenous,KIT,NM_000222.2,126\nEndogenous,LAG3,NM_002286.5,24\nEndogenous,SOCS3,NM_003955.3,95\nEndogenous,TCF7,NM_003202.2,54\nEndogenous,IKBKB,NM_001556.1,558\nEndogenous,KLRC2,NM_002260.3,30",
+      "GSM6788353_20201006_andeen_13-24_208731620421_01_04.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,4\nFovCount,280\nFovCounted,280\nScannerID,1809C0569\nStagePosition,2\nBindingDensity,0.65\nCartridgeID,andeen 13-24 208731620421\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,33\nEndogenous,HLA-DQB1,NM_002123.3,3\nEndogenous,KIT,NM_000222.2,122\nEndogenous,LAG3,NM_002286.5,21\nEndogenous,SOCS3,NM_003955.3,122\nEndogenous,TCF7,NM_003202.2,34\nEndogenous,IKBKB,NM_001556.1,376\nEndogenous,KLRC2,NM_002260.3,13",
+      "GSM6788354_20201006_andeen_13-24_208731620421_01_05.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,5\nFovCount,280\nFovCounted,274\nScannerID,1809C0569\nStagePosition,2\nBindingDensity,0.38\nCartridgeID,andeen 13-24 208731620421\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,11\nEndogenous,HLA-DQB1,NM_002123.3,3\nEndogenous,KIT,NM_000222.2,89\nEndogenous,LAG3,NM_002286.5,12\nEndogenous,SOCS3,NM_003955.3,81\nEndogenous,TCF7,NM_003202.2,62\nEndogenous,IKBKB,NM_001556.1,217\nEndogenous,KLRC2,NM_002260.3,73",
+      "GSM6788355_20201006_andeen_13-24_208731620421_01_06.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,6\nFovCount,280\nFovCounted,279\nScannerID,1809C0569\nStagePosition,2\nBindingDensity,0.39\nCartridgeID,andeen 13-24 208731620421\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,9\nEndogenous,HLA-DQB1,NM_002123.3,241\nEndogenous,KIT,NM_000222.2,78\nEndogenous,LAG3,NM_002286.5,17\nEndogenous,SOCS3,NM_003955.3,44\nEndogenous,TCF7,NM_003202.2,69\nEndogenous,IKBKB,NM_001556.1,174\nEndogenous,KLRC2,NM_002260.3,43",
+      "GSM6788356_20201006_andeen_13-24_208731620421_01_07.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,7\nFovCount,280\nFovCounted,279\nScannerID,1809C0569\nStagePosition,2\nBindingDensity,0.29\nCartridgeID,andeen 13-24 208731620421\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,9\nEndogenous,HLA-DQB1,NM_002123.3,2\nEndogenous,KIT,NM_000222.2,35\nEndogenous,LAG3,NM_002286.5,6\nEndogenous,SOCS3,NM_003955.3,34\nEndogenous,TCF7,NM_003202.2,48\nEndogenous,IKBKB,NM_001556.1,133\nEndogenous,KLRC2,NM_002260.3,26",
+      "GSM6788357_20201006_andeen_13-24_208731620421_01_08.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,8\nFovCount,280\nFovCounted,280\nScannerID,1809C0569\nStagePosition,2\nBindingDensity,0.26\nCartridgeID,andeen 13-24 208731620421\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,0\nEndogenous,HLA-DQB1,NM_002123.3,2\nEndogenous,KIT,NM_000222.2,0\nEndogenous,LAG3,NM_002286.5,2\nEndogenous,SOCS3,NM_003955.3,4\nEndogenous,TCF7,NM_003202.2,2\nEndogenous,IKBKB,NM_001556.1,1\nEndogenous,KLRC2,NM_002260.3,3",
+      "GSM6788358_20201006_andeen_13-24_208731620421_01_09.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,9\nFovCount,280\nFovCounted,280\nScannerID,1809C0569\nStagePosition,2\nBindingDensity,0.28\nCartridgeID,andeen 13-24 208731620421\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,3\nEndogenous,HLA-DQB1,NM_002123.3,19\nEndogenous,KIT,NM_000222.2,7\nEndogenous,LAG3,NM_002286.5,3\nEndogenous,SOCS3,NM_003955.3,19\nEndogenous,TCF7,NM_003202.2,11\nEndogenous,IKBKB,NM_001556.1,54\nEndogenous,KLRC2,NM_002260.3,3",
+      "GSM6788359_20201006_andeen_13-24_208731620421_01_10.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,10\nFovCount,280\nFovCounted,278\nScannerID,1809C0569\nStagePosition,2\nBindingDensity,0.55\nCartridgeID,andeen 13-24 208731620421\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,6\nEndogenous,HLA-DQB1,NM_002123.3,1252\nEndogenous,KIT,NM_000222.2,50\nEndogenous,LAG3,NM_002286.5,18\nEndogenous,SOCS3,NM_003955.3,1124\nEndogenous,TCF7,NM_003202.2,68\nEndogenous,IKBKB,NM_001556.1,175\nEndogenous,KLRC2,NM_002260.3,17",
+      "GSM6788360_20201006_andeen_13-24_208731620421_01_11.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,11\nFovCount,280\nFovCounted,280\nScannerID,1809C0569\nStagePosition,2\nBindingDensity,0.34\nCartridgeID,andeen 13-24 208731620421\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,1\nEndogenous,HLA-DQB1,NM_002123.3,154\nEndogenous,KIT,NM_000222.2,87\nEndogenous,LAG3,NM_002286.5,9\nEndogenous,SOCS3,NM_003955.3,53\nEndogenous,TCF7,NM_003202.2,25\nEndogenous,IKBKB,NM_001556.1,113\nEndogenous,KLRC2,NM_002260.3,9",
+      "GSM6788361_20201006_andeen_13-24_208731620421_01_12.RCC.gz": "<Header>\nFileVersion,1.7\nSoftwareVersion,4.0.1.8\n</Header>\n\n<Sample_Attributes>\nID,01\nOwner,\nComments,\nDate,20201006\nGeneRLF,NS_Immunology_v2_C2328\nSystemAPF,n6_vDV1\n</Sample_Attributes>\n\n<Lane_Attributes>\nID,12\nFovCount,280\nFovCounted,278\nScannerID,1809C0569\nStagePosition,2\nBindingDensity,0.29\nCartridgeID,andeen 13-24 208731620421\nCartridgeBarcode,\n</Lane_Attributes>\n\n<Code_Summary>\nCodeClass,Name,Accession,Count\nEndogenous,VTN,NM_000638.3,3\nEndogenous,HLA-DQB1,NM_002123.3,20\nEndogenous,KIT,NM_000222.2,5\nEndogenous,LAG3,NM_002286.5,3\nEndogenous,SOCS3,NM_003955.3,15\nEndogenous,TCF7,NM_003202.2,10\nEndogenous,IKBKB,NM_001556.1,14\nEndogenous,KLRC2,NM_002260.3,2"
+    }
+  },
+  "GSE286911": {
+    "file_bytes": 1499996160,
+    "member_count": 18,
+    "members": [
+      {
+        "name": "GSM8733684_Le1_barcodes.tsv.gz",
+        "size": 7734347
+      },
+      {
+        "name": "GSM8733684_Le1_features.tsv.gz",
+        "size": 294478
+      },
+      {
+        "name": "GSM8733684_Le1_matrix.mtx.gz",
+        "size": 293459126
+      },
+      {
+        "name": "GSM8733685_Le2_barcodes.tsv.gz",
+        "size": 7362911
+      },
+      {
+        "name": "GSM8733685_Le2_features.tsv.gz",
+        "size": 294478
+      },
+      {
+        "name": "GSM8733685_Le2_matrix.mtx.gz",
+        "size": 305075848
+      },
+      {
+        "name": "GSM8733686_Le3_barcodes.tsv.gz",
+        "size": 7371721
+      },
+      {
+        "name": "GSM8733686_Le3_features.tsv.gz",
+        "size": 294478
+      },
+      {
+        "name": "GSM8733686_Le3_matrix.mtx.gz",
+        "size": 332066534
+      },
+      {
+        "name": "GSM8733687_Ne1_barcodes.tsv.gz",
+        "size": 6161065
+      },
+      {
+        "name": "GSM8733687_Ne1_features.tsv.gz",
+        "size": 294478
+      },
+      {
+        "name": "GSM8733687_Ne1_matrix.mtx.gz",
+        "size": 178005617
+      },
+      {
+        "name": "GSM8733688_Ne2_barcodes.tsv.gz",
+        "size": 6385478
+      },
+      {
+        "name": "GSM8733688_Ne2_features.tsv.gz",
+        "size": 294478
+      },
+      {
+        "name": "GSM8733688_Ne2_matrix.mtx.gz",
+        "size": 180723320
+      },
+      {
+        "name": "GSM8733689_Ne3_barcodes.tsv.gz",
+        "size": 5365450
+      },
+      {
+        "name": "GSM8733689_Ne3_features.tsv.gz",
+        "size": 294478
+      },
+      {
+        "name": "GSM8733689_Ne3_matrix.mtx.gz",
+        "size": 168501199
+      }
+    ],
+    "inferred_mapping": [
+      {
+        "member": "GSM8733684_Le1_barcodes.tsv.gz",
+        "bytes": 7734347,
+        "sample_id": "Le1",
+        "kind": "barcodes"
+      },
+      {
+        "member": "GSM8733684_Le1_features.tsv.gz",
+        "bytes": 294478,
+        "sample_id": "Le1",
+        "kind": "features"
+      },
+      {
+        "member": "GSM8733684_Le1_matrix.mtx.gz",
+        "bytes": 293459126,
+        "sample_id": "Le1",
+        "kind": "matrix"
+      },
+      {
+        "member": "GSM8733685_Le2_barcodes.tsv.gz",
+        "bytes": 7362911,
+        "sample_id": "Le2",
+        "kind": "barcodes"
+      },
+      {
+        "member": "GSM8733685_Le2_features.tsv.gz",
+        "bytes": 294478,
+        "sample_id": "Le2",
+        "kind": "features"
+      },
+      {
+        "member": "GSM8733685_Le2_matrix.mtx.gz",
+        "bytes": 305075848,
+        "sample_id": "Le2",
+        "kind": "matrix"
+      },
+      {
+        "member": "GSM8733686_Le3_barcodes.tsv.gz",
+        "bytes": 7371721,
+        "sample_id": "Le3",
+        "kind": "barcodes"
+      },
+      {
+        "member": "GSM8733686_Le3_features.tsv.gz",
+        "bytes": 294478,
+        "sample_id": "Le3",
+        "kind": "features"
+      },
+      {
+        "member": "GSM8733686_Le3_matrix.mtx.gz",
+        "bytes": 332066534,
+        "sample_id": "Le3",
+        "kind": "matrix"
+      },
+      {
+        "member": "GSM8733687_Ne1_barcodes.tsv.gz",
+        "bytes": 6161065,
+        "sample_id": "Ne1",
+        "kind": "barcodes"
+      },
+      {
+        "member": "GSM8733687_Ne1_features.tsv.gz",
+        "bytes": 294478,
+        "sample_id": "Ne1",
+        "kind": "features"
+      },
+      {
+        "member": "GSM8733687_Ne1_matrix.mtx.gz",
+        "bytes": 178005617,
+        "sample_id": "Ne1",
+        "kind": "matrix"
+      },
+      {
+        "member": "GSM8733688_Ne2_barcodes.tsv.gz",
+        "bytes": 6385478,
+        "sample_id": "Ne2",
+        "kind": "barcodes"
+      },
+      {
+        "member": "GSM8733688_Ne2_features.tsv.gz",
+        "bytes": 294478,
+        "sample_id": "Ne2",
+        "kind": "features"
+      },
+      {
+        "member": "GSM8733688_Ne2_matrix.mtx.gz",
+        "bytes": 180723320,
+        "sample_id": "Ne2",
+        "kind": "matrix"
+      },
+      {
+        "member": "GSM8733689_Ne3_barcodes.tsv.gz",
+        "bytes": 5365450,
+        "sample_id": "Ne3",
+        "kind": "barcodes"
+      },
+      {
+        "member": "GSM8733689_Ne3_features.tsv.gz",
+        "bytes": 294478,
+        "sample_id": "Ne3",
+        "kind": "features"
+      },
+      {
+        "member": "GSM8733689_Ne3_matrix.mtx.gz",
+        "bytes": 168501199,
+        "sample_id": "Ne3",
+        "kind": "matrix"
+      }
+    ]
+  }
+}

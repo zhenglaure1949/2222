@@ -1,0 +1,23 @@
+{
+  "output": "supplement/TableS1_v9_RIPS_gene_sources_runtime_verified.xlsx",
+  "rows": 35,
+  "references": 14,
+  "rules": 12,
+  "coverage": {
+    "Fibrosis_GSE127136": 8,
+    "Fibrosis_GSE286911": 8,
+    "Fibrosis_GSE220100": 1,
+    "Inflammatory chemotaxis_GSE127136": 8,
+    "Inflammatory chemotaxis_GSE286911": 8,
+    "Inflammatory chemotaxis_GSE220100": 7,
+    "Complement_GSE127136": 6,
+    "Complement_GSE286911": 6,
+    "Complement_GSE220100": 5,
+    "Endothelial activation_GSE127136": 5,
+    "Endothelial activation_GSE286911": 5,
+    "Endothelial activation_GSE220100": 4,
+    "Tubular injury_GSE127136": 8,
+    "Tubular injury_GSE286911": 8,
+    "Tubular injury_GSE220100": 2
+  }
+}
