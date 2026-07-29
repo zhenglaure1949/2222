@@ -7,6 +7,8 @@ authors:
     given-names: Laurel
 version: 1.0.3
 date-released: 2026-07-28
+doi: 10.5281/zenodo.21649272
+url: https://doi.org/10.5281/zenodo.21649272
 license: MIT
 repository-code: https://github.com/zhenglaure1949/2222/tree/iga-rips-release/analysis_pipeline
 keywords:
