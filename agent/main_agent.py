@@ -198,7 +198,7 @@ class MedicalLiteratureAgent:
         print("="*70)
         
         print("\n📋 配置信息:")
-        config_dict = Config.get_all()
+        config_dict = self.config.get_all()
         for key, value in config_dict.items():
             print(f"  {key}: {value}")
         

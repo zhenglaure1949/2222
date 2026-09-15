@@ -115,11 +115,16 @@ pip install -r requirements.txt
 1. 创建 `.env` 文件并配置API密钥：
 ```
 OPENAI_API_KEY=your_key_here
-PUBMED_API_KEY=your_key_here
-BAIDU_TRANSLATE_API=your_key_here
+NCBI_API_KEY=your_key_here
+BAIDU_APPID=your_appid_here
+BAIDU_SECRET_KEY=your_secret_here
 ```
 
 2. 初始化本地知识库
+
+> 安全提示：`.env` 已被 `.gitignore` 排除。不要把真实密钥写入源码、Issue、日志或 GitHub Actions 输入。程序诊断只显示密钥是否已配置，不显示密钥值。GitHub Actions 使用短期 `${{ github.token }}`；高权限任务只接受 GitHub `workflow_dispatch` 手动触发，由仓库写权限控制授权。
+
+更多说明见 [SECURITY.md](SECURITY.md)。
 
 ### 使用示例
 

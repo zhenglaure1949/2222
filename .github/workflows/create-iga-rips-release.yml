@@ -1,9 +1,12 @@
 name: Create IgA RIPS v1.0.0 release
 
 on:
-  issues:
-    types: [opened]
   workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number to receive the release comment
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -11,18 +14,22 @@ permissions:
 
 jobs:
   release:
-    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.issue.title, '[CREATE-IGA-RIPS-RELEASE]')
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
+      - name: Validate dispatch input
+        env:
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+        shell: bash
+        run: '[[ "$ISSUE_NUMBER" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid issue number" >&2; exit 1; }'
       - name: Check out validated analysis branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: iga-rips-release
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: '3.11'
 
@@ -82,12 +89,13 @@ jobs:
           gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json url,tagName,name,isDraft,isPrerelease,publishedAt > /tmp/release.json
 
       - name: Report release status
-        if: always() && github.event_name == 'issues'
+        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
         shell: bash
         run: |
+          [[ "$ISSUE_NUMBER" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid issue number" >&2; exit 1; }
           {
             echo '### IgA RIPS release workflow finished'
             echo

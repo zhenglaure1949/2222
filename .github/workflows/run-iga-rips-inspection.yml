@@ -1,9 +1,12 @@
 name: Run IgA RIPS input inspection
 
 on:
-  issues:
-    types: [opened]
   workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number to receive the inspection comment
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -11,17 +14,21 @@ permissions:
 
 jobs:
   inspect:
-    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.issue.title, '[RUN-IGA-RIPS-INSPECTION]')
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
+      - name: Validate dispatch input
+        env:
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+        shell: bash
+        run: '[[ "$ISSUE_NUMBER" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid issue number" >&2; exit 1; }'
       - name: Check out analysis branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: iga-rips-release
           fetch-depth: 0
       - name: Restore GEO cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: data/external
           key: iga-rips-geo-inputs-v1
@@ -64,12 +71,13 @@ jobs:
             git push origin HEAD:iga-rips-release
           fi
       - name: Report status to trigger issue
-        if: github.event_name == 'issues'
+        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
         shell: bash
         run: |
+          [[ "$ISSUE_NUMBER" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid issue number" >&2; exit 1; }
           {
             echo '### GEO input inspection completed'
             echo

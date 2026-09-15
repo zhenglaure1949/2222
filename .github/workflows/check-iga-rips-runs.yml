@@ -1,8 +1,12 @@
 name: Check IgA RIPS workflow status
 
 on:
-  issues:
-    types: [opened]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number to receive the status comment
+        required: true
+        type: string
 
 permissions:
   actions: read
@@ -11,15 +15,20 @@ permissions:
 
 jobs:
   check:
-    if: startsWith(github.event.issue.title, '[CHECK-IGA-RIPS]')
     runs-on: ubuntu-latest
     steps:
+      - name: Validate dispatch input
+        env:
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+        shell: bash
+        run: '[[ "$ISSUE_NUMBER" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid issue number" >&2; exit 1; }'
       - name: Query recent workflow runs
         env:
           GH_TOKEN: ${{ github.token }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
         shell: bash
         run: |
+          [[ "$ISSUE_NUMBER" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid issue number" >&2; exit 1; }
           gh run list --repo "$GITHUB_REPOSITORY" --workflow run-iga-rips-full-analysis.yml --limit 10 --json databaseId,status,conclusion,createdAt,updatedAt,event,displayTitle,headSha,url > /tmp/runs.json
           {
             echo '### IgA RIPS workflow heartbeat'
