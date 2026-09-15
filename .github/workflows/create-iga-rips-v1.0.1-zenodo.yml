@@ -1,9 +1,12 @@
 name: Create IgA RIPS v1.0.3 and capture Zenodo DOI
 
 on:
-  issues:
-    types: [opened]
   workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number to receive the archive comment
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -15,12 +18,16 @@ env:
 
 jobs:
   archive:
-    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.issue.title, '[CREATE-IGA-RIPS-ZENODO]')
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
+      - name: Validate dispatch input
+        env:
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+        shell: bash
+        run: '[[ "$ISSUE_NUMBER" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid issue number" >&2; exit 1; }'
       - name: Check out validated analysis branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: iga-rips-release
           fetch-depth: 0
@@ -95,12 +102,13 @@ jobs:
           exit 1
 
       - name: Report archive status
-        if: always() && github.event_name == 'issues'
+        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
         shell: bash
         run: |
+          [[ "$ISSUE_NUMBER" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid issue number" >&2; exit 1; }
           {
             echo '### IgA RIPS v1.0.3 archival workflow finished'
             echo

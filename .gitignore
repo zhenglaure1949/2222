@@ -1,0 +1,19 @@
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local environments and runtime data
+.venv/
+venv/
+logs/
+data/cache/
+*.db
+
